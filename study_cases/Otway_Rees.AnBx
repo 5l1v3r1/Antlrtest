@@ -1,0 +1,22 @@
+Protocol: Otway_Rees AnB 
+
+Types: 
+	Agent A,B,s;
+    Number NxM,NxA,NxB;
+    SymmetricKey KxKAB;
+    Function [Agent,Agent -> SymmetricKey] shk
+
+Knowledge: 	
+	A: A,B,s;
+	B: B,A,s;
+	s: A,B,s;
+	A,s share shk(A,s);
+	B,s share shk(B,s)
+Actions:
+	A -> B: NxM,A,B,{|NxA,NxM,A,B|}shk(A,s)
+	B -> s: NxM,A,B,{|NxA,NxM,A,B|}shk(A,s),{|NxB,NxM,A,B|}shk(B,s)
+	s -> B: NxM,{|NxA,KxKAB|}shk(A,s),{|NxB,KxKAB|}shk(B,s)
+	B -> A: NxM,{|NxA,KxKAB|}shk(A,s)
+	
+Goals:
+	KxKAB secret between A,B,s

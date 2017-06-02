@@ -1,0 +1,18 @@
+Protocol: ISOCCFOnePassUnilateralAuthProt
+
+Types:
+	Agent A,B;
+	Number NxA,NxB,Text1,Text2,empty;
+	Function f;
+	Function shk;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	A: A,B,f,empty,pk,sk,hmac,hash,shk(A,B);
+	B: B,A,f,empty,pk,sk,hmac,hash,shk(A,B)
+
+Actions:
+	A -> B: NxA,B,Text2,f(shk(A,B),NxA,B,Text1),NxA,B,Text1
+
+Goals:
+	B weakly authenticates A on Text1

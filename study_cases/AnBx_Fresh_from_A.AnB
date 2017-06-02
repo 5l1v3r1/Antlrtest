@@ -1,0 +1,23 @@
+Protocol: AnBx_Fresh_from_A
+
+Types:
+	Agent A,B;
+	Number Msg,empty;
+	SeqNumber SQNx1;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	A: A,B,inv(pk(A)),inv(sk(A)),empty,pk,sk,hmac,hash;
+	B: A,B,inv(pk(B)),inv(sk(B)),empty,pk,sk,hmac,hash
+
+Actions:
+
+	# 	A -> B,@(A|B|-): Msg
+	A -> B: {B,SQNx1,Msg}inv(sk(A))
+
+Goals:
+	B authenticates A on Msg
+	inv(pk(A)) secret between A
+	inv(sk(A)) secret between A
+	inv(pk(B)) secret between B
+	inv(sk(B)) secret between B

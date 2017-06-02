@@ -1,0 +1,70 @@
+Protocol: SET_Rev
+
+Types:
+	Agent C,M,a;
+	Number PurchAmt,OrderDesc,NxLIDM,NxXID,NxAuthCode,empty;
+	Function pan;
+	SeqNumber SQNx4,SQNx5,SQNx6,SQNx11,SQNx12;
+	Function pk,sk,hmac,hash;
+	Symmetric_key Hx6MOrderDesc,Hx6apanCa
+
+Knowledge:
+	C: C,M,a,inv(pk(C)),inv(sk(C)),empty,pk,sk,hmac,hash,pan(C,a);
+	M: C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash;
+	a: C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,pan(C,a)
+
+Actions:
+	C *->* M: PurchAmt,OrderDesc
+	M *->* C: empty
+
+	# 	C -> M,@(C|M|M): NxLIDM
+	C -> M: {{M,SQNx4,NxLIDM}inv(sk(C))}pk(M)
+
+	# 	M -> C,@(M|C|C): NxXID
+	M -> C: {{C,SQNx5,NxXID}inv(sk(M))}pk(C)
+
+	# 	C -> M,@(C|M|M): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a]
+	C -> M: {{M,SQNx6,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a)}inv(sk(C))}pk(M)
+	M -> C: empty
+
+	# 	C -> M,(C|a|a): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a],PurchAmt,pan(C,a)
+	C -> M: {{a,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a),PurchAmt,pan(C,a)}inv(sk(C))}pk(a)
+
+	# 	M -> a,(C|a|a): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a],PurchAmt,pan(C,a)
+	M -> a: {{a,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a),PurchAmt,pan(C,a)}inv(sk(C))}pk(a)
+	a -> M: empty
+
+	# 	M -> a,@(M|a|a): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a],PurchAmt
+	M -> a: {{a,SQNx11,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a),PurchAmt}inv(sk(M))}pk(a)
+
+	# 	a -> M,@(a|M,C|M): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a],NxAuthCode
+	a -> M: {{M,C,SQNx12,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a),NxAuthCode}inv(sk(a))}pk(M)
+
+	# 	M -> C,@(a|M,C|C): NxLIDM,NxXID,[OrderDesc:M],[pan(C,a):a],NxAuthCode
+	M -> C: {{M,C,SQNx12,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),{Hx6MOrderDesc}pk(M),hmac(pan(C,a),Hx6apanCa),{Hx6apanCa}pk(a),NxAuthCode}inv(sk(a))}pk(C)
+
+Goals:
+	pan(C,a) secret between C,a
+	a weakly authenticates C on pan(C,a)
+	M authenticates a on NxAuthCode
+	C authenticates a on NxAuthCode
+	C authenticates M on NxAuthCode
+	# 	a weakly authenticates C on Contract
+	a weakly authenticates C on PurchAmt,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),hmac(pan(C,a),Hx6apanCa)
+	# 	C authenticates a on Contract,NxAuthCode
+	C authenticates a on PurchAmt,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),hmac(pan(C,a),Hx6apanCa),NxAuthCode
+	# 	C authenticates M on Contract
+	C authenticates M on PurchAmt,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),hmac(pan(C,a),Hx6apanCa)
+	# 	M authenticates C on Contract
+	M authenticates C on PurchAmt,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),hmac(pan(C,a),Hx6apanCa)
+	# 	M authenticates a on Contract,NxAuthCode
+	M authenticates a on PurchAmt,NxLIDM,NxXID,hmac(OrderDesc,Hx6MOrderDesc),hmac(pan(C,a),Hx6apanCa),NxAuthCode
+	OrderDesc secret between C,M
+	PurchAmt secret between C,M,a
+	NxAuthCode secret between C,M,a
+	inv(pk(C)) secret between C
+	inv(sk(C)) secret between C
+	inv(pk(M)) secret between M
+	inv(sk(M)) secret between M
+	inv(pk(a)) secret between a
+	inv(sk(a)) secret between a

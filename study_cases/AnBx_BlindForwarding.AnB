@@ -1,0 +1,30 @@
+Protocol: AnBx_BlindForwarding
+
+Types:
+	Agent C,M,A;
+	Number Price,empty;
+	Function ccn;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	C: C,M,A,inv(pk(C)),inv(sk(C)),empty,pk,sk,hmac,hash,ccn(C,A);
+	M: C,M,A,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash;
+	A: C,M,A,inv(pk(A)),inv(sk(A)),empty,pk,sk,hmac,hash,ccn(C,A)
+
+Actions:
+
+	# 	C -> M,(C|A|A): ccn(C,A)
+	C -> M: {{A,ccn(C,A)}inv(sk(C))}pk(A)
+
+	# 	M -> A,(C|A|A): ccn(C,A)
+	M -> A: {{A,ccn(C,A)}inv(sk(C))}pk(A)
+
+Goals:
+	A weakly authenticates C on ccn(C,A)
+	ccn(C,A) secret between C,A
+	inv(pk(C)) secret between C
+	inv(sk(C)) secret between C
+	inv(pk(M)) secret between M
+	inv(sk(M)) secret between M
+	inv(pk(A)) secret between A
+	inv(sk(A)) secret between A

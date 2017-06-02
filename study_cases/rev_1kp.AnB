@@ -1,0 +1,52 @@
+Protocol: Rev_1KP
+
+Types:
+	Agent C,M,a;
+	Number Desc,Price,TID,Auth,empty;
+	Function ccn;
+	SeqNumber SQNx10;
+	Function pk,sk,hmac,hash;
+	Symmetric_key Hx4accnCa
+
+Knowledge:
+	C: C,M,a,empty,pk,sk,hmac,hash,ccn(C,a);
+	M: C,M,a,empty,pk,sk,hmac,hash;
+	a: C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,ccn(C,a)
+
+Actions:
+	C *->* M: Price,Desc
+	M *->* C: empty
+
+	# 	C -> M,(-|-|-): [ccn(C,a):a],[Desc]
+	C -> M: hmac(ccn(C,a),Hx4accnCa),{Hx4accnCa}pk(a),hash(Desc)
+
+	# 	M -> C,(-|-|-): TID,[Price,TID,[ccn(C,a):a],[Desc]]
+	M -> C: TID,hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))
+
+	# 	C -> M,(-|-|a): Price,TID,ccn(C,a),[ccn(C,a):a],[Price,TID,[ccn(C,a):a],[Desc]]
+	C -> M: {Price,TID,ccn(C,a),hmac(ccn(C,a),Hx4accnCa),{Hx4accnCa}pk(a),hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))}pk(a)
+
+	# 	M -> a,(-|-|a): Price,TID,ccn(C,a),[ccn(C,a):a],[Price,TID,[ccn(C,a):a],[Desc]]
+	M -> a: {Price,TID,ccn(C,a),hmac(ccn(C,a),Hx4accnCa),{Hx4accnCa}pk(a),hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))}pk(a)
+	a -> M: empty
+
+	# 	M -> a,(-|-|a): Price,TID,[Desc],[Price,TID,[ccn(C,a):a],[Desc]]
+	M -> a: {Price,TID,hash(Desc),hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))}pk(a)
+
+	# 	a -> M,@(a|M,C|-): Auth,TID,[Price,TID,[ccn(C,a):a],[Desc]]
+	a -> M: {M,C,SQNx10,Auth,TID,hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))}inv(sk(a))
+
+	# 	M -> C,(a|M,C|-): Auth,TID,[Price,TID,[ccn(C,a):a],[Desc]]
+	M -> C: {M,C,SQNx10,Auth,TID,hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc))}inv(sk(a))
+
+Goals:
+	# 	Can secret between C,a
+	ccn(C,a) secret between C,a
+	M authenticates a on Auth
+	C authenticates a on Auth
+	# 	M authenticates a on HContract,Auth
+	M authenticates a on hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc)),Auth
+	# 	C authenticates a on HContract,Auth
+	C authenticates a on hash(Price,TID,hmac(ccn(C,a),Hx4accnCa),hash(Desc)),Auth
+	inv(pk(a)) secret between a
+	inv(sk(a)) secret between a

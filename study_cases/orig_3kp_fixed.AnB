@@ -1,0 +1,44 @@
+Protocol: Orig_3KP_Fixed
+
+Types:
+	Agent C,M,a;
+	Number TID,Auth,empty,Desc,Price,ID,NxSALTMe,NxV,NxVC,NxNONCE;
+	Symmetric_key HxRC,HxSALTC;
+	Function pk,sk,hash,hmac;
+	Function can
+
+Knowledge:
+	C: C,M,a,inv(pk(C)),inv(sk(C)),empty,pk,sk,hmac,hash,can(C,a);
+	M: C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash;
+	a: C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,can(C,a)
+
+Actions:
+	C *->* M: Price,Desc
+	M *->* C: empty
+	C -> M: HxSALTC,hmac(can(C,a),HxRC)
+	M -> C: ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),hash(NxV),hash(NxVC),{hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC))}inv(sk(M))
+	C -> M: {Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC,NxSALTMe}pk(a),{hash({Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC,NxSALTMe}pk(a),hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(C))
+	M -> a: ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),hash(NxV),hash(NxVC),hmac(Desc,HxSALTC),{Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC,NxSALTMe}pk(a),{hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),{Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC,NxSALTMe}pk(a)}inv(sk(M)),{hash({Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC,NxSALTMe}pk(a),hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(C))
+	a -> M: Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(a))
+	M -> C: Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(a)),NxV,NxVC
+
+Goals:
+	can(C,a) secret between C,a
+	a weakly authenticates C on can(C,a)
+	# 	C authenticates M on Common
+	C authenticates M on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)
+	# 	a weakly authenticates M on Common
+	a weakly authenticates M on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)
+	# 	a weakly authenticates C on Common
+	a weakly authenticates C on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)
+	M authenticates a on Auth
+	# 	C authenticates a on Common,Auth
+	C authenticates a on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC),Auth
+	C authenticates a on Auth
+	Desc secret between C,M
+	inv(pk(C)) secret between C
+	inv(sk(C)) secret between C
+	inv(pk(M)) secret between M
+	inv(sk(M)) secret between M
+	inv(pk(a)) secret between a
+	inv(sk(a)) secret between a

@@ -1,0 +1,33 @@
+Protocol: SET_Orig_v2
+
+Types:
+	Agent C,M,a;
+	Number PurchAmt,NxXID,OrderDesc,NxLIDM,NxChallC,NxChallM,NxAuthCode,empty;
+	Function pan;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	C: C,M,a,empty,pk,sk,hmac,hash,pan(C,a);
+	M: C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash;
+	a: C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,pan(C,a)
+
+Actions:
+	C *->* M: PurchAmt,OrderDesc
+	M *->* C: empty
+	C -> M: NxLIDM,NxChallC
+	M -> C: {NxLIDM,NxXID,NxChallC,NxChallM}inv(sk(M))
+	C -> M: hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),{NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),pan(C,a)}pk(a),NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM,hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a))
+	M -> a: {{NxLIDM,NxXID,hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),hash(OrderDesc,PurchAmt),hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),{NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),pan(C,a)}pk(a)}inv(sk(M))}pk(a)
+	a -> M: {{M,NxLIDM,NxXID,PurchAmt,NxAuthCode}inv(sk(a))}pk(M)
+	M -> C: {NxLIDM,NxXID,NxChallC,hash(PurchAmt),NxAuthCode}inv(sk(M))
+
+Goals:
+	pan(C,a) secret between C,a
+	M authenticates a on NxAuthCode
+	# 	a weakly authenticates C on Contract
+	a weakly authenticates C on PurchAmt,NxLIDM,NxXID,hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM)
+	OrderDesc secret between C,M
+	inv(pk(M)) secret between M
+	inv(sk(M)) secret between M
+	inv(pk(a)) secret between a
+	inv(sk(a)) secret between a

@@ -1,0 +1,27 @@
+Protocol: DH
+
+Types:
+	Agent A,B;
+	Number Msg,XxX,YxY,g,empty;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	A: A,B,g,inv(pk(A)),inv(sk(A)),empty,pk,sk,hmac,hash;
+	B: A,B,g,inv(pk(B)),inv(sk(B)),empty,pk,sk,hmac,hash
+
+Actions:
+
+	# 	A -> B,(A|B|-): exp(g,XxX)
+	A -> B: {B,exp(g,XxX)}inv(sk(A))
+
+	# 	B -> A,(B|A|-): exp(g,YxY)
+	B -> A: {A,exp(g,YxY)}inv(sk(B))
+	A -> B: {|Msg|}exp(exp(g,YxY),XxX)
+
+Goals:
+	Msg secret between A,B
+	B authenticates A on Msg
+	inv(pk(A)) secret between A
+	inv(sk(A)) secret between A
+	inv(pk(B)) secret between B
+	inv(sk(B)) secret between B

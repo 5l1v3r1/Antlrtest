@@ -1,0 +1,20 @@
+Protocol: AndrewSecureRPCSecrecy
+
+Types:
+	Agent A,B;
+	Number NxNA,NxNB,NxNB2,empty;
+	Function shk;
+	Function succ,pk,sk,hmac,hash
+
+Knowledge:
+	A: A,B,succ,empty,pk,sk,hmac,hash,shk(A,B);
+	B: B,A,succ,empty,pk,sk,hmac,hash,shk(A,B)
+
+Actions:
+	A -> B: A,{|NxNA|}shk(A,B)
+	B -> A: {|succ(NxNA),NxNB|}shk(A,B)
+	A -> B: {|succ(NxNB)|}shk(A,B)
+	B -> A: {|NxNB2|}shk(A,B)
+
+Goals:
+	B ->* A: NxNB2

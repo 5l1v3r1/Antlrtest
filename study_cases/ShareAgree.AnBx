@@ -1,0 +1,23 @@
+Protocol: ShareAgree
+
+Types: 
+	Agent A,B;
+	Number Price,Desc,empty;
+	Function [Agent,Agent -> Number] prova;
+	Function [Agent,Agent -> SymmetricKey] shk
+
+Knowledge: 
+	A: A,B,empty;
+	B: B,A,empty,prova;
+	A,B share shk(A,B);
+	A,B agree Price,Desc
+	
+Actions:
+	A -> B : {|Price|}shk(A,B)
+	B -> A : {|Desc|}shk(A,B)
+	A -> B : empty
+	B -> A : prova(A,B)
+
+Goals:
+	Price,Desc secret between A,B
+	shk(A,B) secret between A,B

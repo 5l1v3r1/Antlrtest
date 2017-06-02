@@ -1,0 +1,36 @@
+Protocol: Orig_1KP_Fixed
+
+Types:
+	Agent C,M,a;
+	Number empty,Desc,Price,ID,NxNONCE;
+	Symmetric_key HxRC,HxSALTC;
+	SeqNumber TID,Auth;
+	Function pk,sk,hash,hmac;
+	Function can
+
+Knowledge:
+	C: C,M,a,empty,pk,sk,hmac,hash,can(C,a);
+	M: C,M,a,empty,pk,sk,hmac,hash;
+	a: C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,can(C,a)
+
+Actions:
+	C *->* M: Price,Desc
+	M *->* C: empty
+	C -> M: HxSALTC,hmac(can(C,a),HxRC)
+	M -> C: ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC))
+	C -> M: {Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC)),can(C,a),HxRC}pk(a)
+	M -> a: ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC)),hmac(Desc,HxSALTC),{Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC)),can(C,a),HxRC}pk(a)
+	a -> M: Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC)))}inv(sk(a))
+	M -> C: Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC)))}inv(sk(a))
+
+Goals:
+	can(C,a) secret between C,a
+	M authenticates a on Auth
+	C authenticates a on Auth
+	# 	M authenticates a on Common,Auth
+	M authenticates a on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),Auth
+	# 	C authenticates a on Common,Auth
+	C authenticates a on Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),Auth
+	Desc secret between C,M
+	inv(pk(a)) secret between a
+	inv(sk(a)) secret between a

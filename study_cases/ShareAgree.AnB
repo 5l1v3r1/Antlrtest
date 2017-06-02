@@ -1,0 +1,24 @@
+Protocol: ShareAgree
+
+Types:
+	Agent A,B;
+	Number Price,Desc,empty;
+	Function prova;
+	Function shk;
+	Function pk,sk,hmac,hash
+
+Knowledge:
+	A: A,B,empty,pk,sk,hmac,hash,shk(A,B);
+	B: B,A,empty,prova,pk,sk,hmac,hash,shk(A,B)
+
+Actions:
+	A *->* B: Price,Desc
+	B *->* A: empty
+	A -> B: {|Price|}shk(A,B)
+	B -> A: {|Desc|}shk(A,B)
+	A -> B: empty
+	B -> A: prova(A,B)
+
+Goals:
+	Price,Desc secret between A,B
+	shk(A,B) secret between A,B
