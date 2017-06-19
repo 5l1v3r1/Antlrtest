@@ -38,6 +38,12 @@ public class HelloRunner
     		
     		System.out.println(tree.toStringTree(anbparser));
     		
+    		
+    		
+//    		ParseTree protocol = tree.getChild(0);
+//    		
+//    		System.out.println(tree.getChild(1).getChild(2).getChild(0).toStringTree());
+//    		
 //    		CSVLexer lexer3 = new CSVLexer(input);
 //    		
 //    		CommonTokenStream tokens3 = new CommonTokenStream(lexer3);

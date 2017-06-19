@@ -10,7 +10,7 @@ ANB_COMMENT:
 		'#' ~[\r\n]* -> channel(HIDDEN)
    		;
 WS:  
-		(' '|'\t'|'\r'? '\n')+
+		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
     	;
 		
 ANB_Message:
@@ -38,43 +38,43 @@ ANB_ListKnow:
 		|ANB_Identifier '(' (ANB_ListKnow (',' ANB_ListKnow)*) ')' 
 		;	
 		
-ANB_VARIABLES
-	: ANB_Identifier (',' ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
-	;
+ANB_VARIABLES: 
+		ANB_Identifier (',' ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
+		;
 
 ANB_KNOW_FUNCTION
-	: ANB_Identifier '(' ( ANB_Identifier | ANB_KNOW_FUNCTION ) ')'
-	;
+		: ANB_Identifier '(' ( ANB_Identifier | ANB_KNOW_FUNCTION ) ')'
+		;
 	
 		
 anb_Document:
-		anb_Protocol WS anb_Types WS anb_Knowlegde WS anb_Actions WS anb_Goals
+		anb_Protocol anb_Types anb_Knowlegde anb_Actions anb_Goals
 		;
 		
 anb_Protocol:
-		'Protocol' ':' WS ANB_Identifier
+		'Protocol' ':' ANB_Identifier
 		;
 		
 anb_Types:
-		'Types' ':' WS anb_type
+		'Types' ':' anb_type
 		;
 anb_type: 
-		ANB_Identifier WS ANB_ListIdentifier
-		|ANB_Identifier WS ANB_ListIdentifier ';' WS anb_type
+		ANB_Identifier ANB_ListIdentifier
+		|ANB_Identifier ANB_ListIdentifier ';' anb_type
 		;
 
 		
 anb_Knowlegde:
-		'Knowledge' ':' WS anb_Know
+		'Knowledge' ':' anb_Know
 		;
 		
 anb_Know:
-		ANB_Identifier ':' WS ANB_VARIABLES 
-		|ANB_Identifier ':' WS ANB_VARIABLES  ';' WS anb_Know
+		ANB_Identifier ':' ANB_VARIABLES 
+		|ANB_Identifier ':' ANB_VARIABLES  ';' anb_Know
 		;
 		
 anb_Actions:
-		'Actions' ':' WS anb_Action
+		'Actions' ':' anb_Action
 		;
 		
 anb_Action:
@@ -83,7 +83,7 @@ anb_Action:
 		;
 
 anb_Goals:
-		'Goals' ':' WS anb_goal
+		'Goals' ':' anb_goal
 		;
 		
 anb_goal:

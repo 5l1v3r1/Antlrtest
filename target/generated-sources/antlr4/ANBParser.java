@@ -91,10 +91,6 @@ public class ANBParser extends Parser {
 		public Anb_ProtocolContext anb_Protocol() {
 			return getRuleContext(Anb_ProtocolContext.class,0);
 		}
-		public List<TerminalNode> WS() { return getTokens(ANBParser.WS); }
-		public TerminalNode WS(int i) {
-			return getToken(ANBParser.WS, i);
-		}
 		public Anb_TypesContext anb_Types() {
 			return getRuleContext(Anb_TypesContext.class,0);
 		}
@@ -130,20 +126,12 @@ public class ANBParser extends Parser {
 			setState(20);
 			anb_Protocol();
 			setState(21);
-			match(WS);
-			setState(22);
 			anb_Types();
-			setState(23);
-			match(WS);
-			setState(24);
+			setState(22);
 			anb_Knowlegde();
-			setState(25);
-			match(WS);
-			setState(26);
+			setState(23);
 			anb_Actions();
-			setState(27);
-			match(WS);
-			setState(28);
+			setState(24);
 			anb_Goals();
 			}
 		}
@@ -159,7 +147,6 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_ProtocolContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(ANBParser.WS, 0); }
 		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
 		public Anb_ProtocolContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -181,13 +168,11 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(26);
 			match(T__0);
-			setState(31);
+			setState(27);
 			match(T__1);
-			setState(32);
-			match(WS);
-			setState(33);
+			setState(28);
 			match(ANB_Identifier);
 			}
 		}
@@ -203,7 +188,6 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_TypesContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(ANBParser.WS, 0); }
 		public Anb_typeContext anb_type() {
 			return getRuleContext(Anb_typeContext.class,0);
 		}
@@ -227,13 +211,11 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(35);
+			setState(30);
 			match(T__2);
-			setState(36);
+			setState(31);
 			match(T__1);
-			setState(37);
-			match(WS);
-			setState(38);
+			setState(32);
 			anb_type();
 			}
 		}
@@ -250,10 +232,6 @@ public class ANBParser extends Parser {
 
 	public static class Anb_typeContext extends ParserRuleContext {
 		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
-		public List<TerminalNode> WS() { return getTokens(ANBParser.WS); }
-		public TerminalNode WS(int i) {
-			return getToken(ANBParser.WS, i);
-		}
 		public TerminalNode ANB_ListIdentifier() { return getToken(ANBParser.ANB_ListIdentifier, 0); }
 		public Anb_typeContext anb_type() {
 			return getRuleContext(Anb_typeContext.class,0);
@@ -276,34 +254,28 @@ public class ANBParser extends Parser {
 		Anb_typeContext _localctx = new Anb_typeContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_anb_type);
 		try {
-			setState(49);
+			setState(40);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(40);
+				setState(34);
 				match(ANB_Identifier);
-				setState(41);
-				match(WS);
-				setState(42);
+				setState(35);
 				match(ANB_ListIdentifier);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(43);
+				setState(36);
 				match(ANB_Identifier);
-				setState(44);
-				match(WS);
-				setState(45);
+				setState(37);
 				match(ANB_ListIdentifier);
-				setState(46);
+				setState(38);
 				match(T__3);
-				setState(47);
-				match(WS);
-				setState(48);
+				setState(39);
 				anb_type();
 				}
 				break;
@@ -321,7 +293,6 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_KnowlegdeContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(ANBParser.WS, 0); }
 		public Anb_KnowContext anb_Know() {
 			return getRuleContext(Anb_KnowContext.class,0);
 		}
@@ -345,13 +316,11 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(42);
 			match(T__4);
-			setState(52);
+			setState(43);
 			match(T__1);
-			setState(53);
-			match(WS);
-			setState(54);
+			setState(44);
 			anb_Know();
 			}
 		}
@@ -368,10 +337,6 @@ public class ANBParser extends Parser {
 
 	public static class Anb_KnowContext extends ParserRuleContext {
 		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
-		public List<TerminalNode> WS() { return getTokens(ANBParser.WS); }
-		public TerminalNode WS(int i) {
-			return getToken(ANBParser.WS, i);
-		}
 		public TerminalNode ANB_VARIABLES() { return getToken(ANBParser.ANB_VARIABLES, 0); }
 		public Anb_KnowContext anb_Know() {
 			return getRuleContext(Anb_KnowContext.class,0);
@@ -394,38 +359,32 @@ public class ANBParser extends Parser {
 		Anb_KnowContext _localctx = new Anb_KnowContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_anb_Know);
 		try {
-			setState(67);
+			setState(54);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(56);
+				setState(46);
 				match(ANB_Identifier);
-				setState(57);
+				setState(47);
 				match(T__1);
-				setState(58);
-				match(WS);
-				setState(59);
+				setState(48);
 				match(ANB_VARIABLES);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(60);
+				setState(49);
 				match(ANB_Identifier);
-				setState(61);
+				setState(50);
 				match(T__1);
-				setState(62);
-				match(WS);
-				setState(63);
+				setState(51);
 				match(ANB_VARIABLES);
-				setState(64);
+				setState(52);
 				match(T__3);
-				setState(65);
-				match(WS);
-				setState(66);
+				setState(53);
 				anb_Know();
 				}
 				break;
@@ -443,7 +402,6 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_ActionsContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(ANBParser.WS, 0); }
 		public Anb_ActionContext anb_Action() {
 			return getRuleContext(Anb_ActionContext.class,0);
 		}
@@ -467,13 +425,11 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(56);
 			match(T__5);
-			setState(70);
+			setState(57);
 			match(T__1);
-			setState(71);
-			match(WS);
-			setState(72);
+			setState(58);
 			anb_Action();
 			}
 		}
@@ -513,80 +469,80 @@ public class ANBParser extends Parser {
 		enterRule(_localctx, 14, RULE_anb_Action);
 		int _la;
 		try {
-			setState(104);
+			setState(90);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(74);
+				setState(60);
 				match(ANB_Identifier);
-				setState(75);
+				setState(61);
 				match(T__6);
-				setState(76);
+				setState(62);
 				match(ANB_Identifier);
-				setState(77);
+				setState(63);
 				match(T__7);
-				setState(78);
+				setState(64);
 				match(ANB_Identifier);
-				setState(83);
+				setState(69);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__8) {
 					{
 					{
-					setState(79);
+					setState(65);
 					match(T__8);
-					setState(80);
+					setState(66);
 					match(ANB_Identifier);
 					}
 					}
-					setState(85);
+					setState(71);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(86);
+				setState(72);
 				match(T__1);
-				setState(87);
+				setState(73);
 				match(ANB_Message);
-				setState(88);
+				setState(74);
 				match(T__3);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(89);
+				setState(75);
 				match(ANB_Identifier);
-				setState(90);
+				setState(76);
 				match(T__9);
-				setState(91);
+				setState(77);
 				match(ANB_Identifier);
-				setState(92);
+				setState(78);
 				match(T__7);
-				setState(93);
+				setState(79);
 				match(ANB_Identifier);
-				setState(98);
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__8) {
 					{
 					{
-					setState(94);
+					setState(80);
 					match(T__8);
-					setState(95);
+					setState(81);
 					match(ANB_Identifier);
 					}
 					}
-					setState(100);
+					setState(86);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(101);
+				setState(87);
 				match(T__1);
-				setState(102);
+				setState(88);
 				match(ANB_Message);
-				setState(103);
+				setState(89);
 				match(T__3);
 				}
 				break;
@@ -604,7 +560,6 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_GoalsContext extends ParserRuleContext {
-		public TerminalNode WS() { return getToken(ANBParser.WS, 0); }
 		public Anb_goalContext anb_goal() {
 			return getRuleContext(Anb_goalContext.class,0);
 		}
@@ -628,13 +583,11 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(106);
+			setState(92);
 			match(T__10);
-			setState(107);
+			setState(93);
 			match(T__1);
-			setState(108);
-			match(WS);
-			setState(109);
+			setState(94);
 			anb_goal();
 			}
 		}
@@ -671,7 +624,7 @@ public class ANBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(96);
 			match(ANB_Identifier);
 			}
 		}
@@ -687,33 +640,29 @@ public class ANBParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26t\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26e\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4"+
-		"\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5\64\n\5\3\6\3\6\3\6\3"+
-		"\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7F\n\7\3\b\3\b\3"+
-		"\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tT\n\t\f\t\16\tW\13\t\3\t\3\t"+
-		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tc\n\t\f\t\16\tf\13\t\3\t\3\t\3\t\5"+
-		"\tk\n\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22"+
-		"\24\2\2\2n\2\26\3\2\2\2\4 \3\2\2\2\6%\3\2\2\2\b\63\3\2\2\2\n\65\3\2\2"+
-		"\2\fE\3\2\2\2\16G\3\2\2\2\20j\3\2\2\2\22l\3\2\2\2\24q\3\2\2\2\26\27\5"+
-		"\4\3\2\27\30\7\21\2\2\30\31\5\6\4\2\31\32\7\21\2\2\32\33\5\n\6\2\33\34"+
-		"\7\21\2\2\34\35\5\16\b\2\35\36\7\21\2\2\36\37\5\22\n\2\37\3\3\2\2\2 !"+
-		"\7\3\2\2!\"\7\4\2\2\"#\7\21\2\2#$\7\16\2\2$\5\3\2\2\2%&\7\5\2\2&\'\7\4"+
-		"\2\2\'(\7\21\2\2()\5\b\5\2)\7\3\2\2\2*+\7\16\2\2+,\7\21\2\2,\64\7\23\2"+
-		"\2-.\7\16\2\2./\7\21\2\2/\60\7\23\2\2\60\61\7\6\2\2\61\62\7\21\2\2\62"+
-		"\64\5\b\5\2\63*\3\2\2\2\63-\3\2\2\2\64\t\3\2\2\2\65\66\7\7\2\2\66\67\7"+
-		"\4\2\2\678\7\21\2\289\5\f\7\29\13\3\2\2\2:;\7\16\2\2;<\7\4\2\2<=\7\21"+
-		"\2\2=F\7\25\2\2>?\7\16\2\2?@\7\4\2\2@A\7\21\2\2AB\7\25\2\2BC\7\6\2\2C"+
-		"D\7\21\2\2DF\5\f\7\2E:\3\2\2\2E>\3\2\2\2F\r\3\2\2\2GH\7\b\2\2HI\7\4\2"+
-		"\2IJ\7\21\2\2JK\5\20\t\2K\17\3\2\2\2LM\7\16\2\2MN\7\t\2\2NO\7\16\2\2O"+
-		"P\7\n\2\2PU\7\16\2\2QR\7\13\2\2RT\7\16\2\2SQ\3\2\2\2TW\3\2\2\2US\3\2\2"+
-		"\2UV\3\2\2\2VX\3\2\2\2WU\3\2\2\2XY\7\4\2\2YZ\7\22\2\2Zk\7\6\2\2[\\\7\16"+
-		"\2\2\\]\7\f\2\2]^\7\16\2\2^_\7\n\2\2_d\7\16\2\2`a\7\13\2\2ac\7\16\2\2"+
-		"b`\3\2\2\2cf\3\2\2\2db\3\2\2\2de\3\2\2\2eg\3\2\2\2fd\3\2\2\2gh\7\4\2\2"+
-		"hi\7\22\2\2ik\7\6\2\2jL\3\2\2\2j[\3\2\2\2k\21\3\2\2\2lm\7\r\2\2mn\7\4"+
-		"\2\2no\7\21\2\2op\5\24\13\2p\23\3\2\2\2qr\7\16\2\2r\25\3\2\2\2\7\63EU"+
-		"dj";
+		"\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\5\5+\n\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7"+
+		"9\n\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tF\n\t\f\t\16\tI\13"+
+		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tU\n\t\f\t\16\tX\13\t\3\t"+
+		"\3\t\3\t\5\t]\n\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16"+
+		"\20\22\24\2\2\2_\2\26\3\2\2\2\4\34\3\2\2\2\6 \3\2\2\2\b*\3\2\2\2\n,\3"+
+		"\2\2\2\f8\3\2\2\2\16:\3\2\2\2\20\\\3\2\2\2\22^\3\2\2\2\24b\3\2\2\2\26"+
+		"\27\5\4\3\2\27\30\5\6\4\2\30\31\5\n\6\2\31\32\5\16\b\2\32\33\5\22\n\2"+
+		"\33\3\3\2\2\2\34\35\7\3\2\2\35\36\7\4\2\2\36\37\7\16\2\2\37\5\3\2\2\2"+
+		" !\7\5\2\2!\"\7\4\2\2\"#\5\b\5\2#\7\3\2\2\2$%\7\16\2\2%+\7\23\2\2&\'\7"+
+		"\16\2\2\'(\7\23\2\2()\7\6\2\2)+\5\b\5\2*$\3\2\2\2*&\3\2\2\2+\t\3\2\2\2"+
+		",-\7\7\2\2-.\7\4\2\2./\5\f\7\2/\13\3\2\2\2\60\61\7\16\2\2\61\62\7\4\2"+
+		"\2\629\7\25\2\2\63\64\7\16\2\2\64\65\7\4\2\2\65\66\7\25\2\2\66\67\7\6"+
+		"\2\2\679\5\f\7\28\60\3\2\2\28\63\3\2\2\29\r\3\2\2\2:;\7\b\2\2;<\7\4\2"+
+		"\2<=\5\20\t\2=\17\3\2\2\2>?\7\16\2\2?@\7\t\2\2@A\7\16\2\2AB\7\n\2\2BG"+
+		"\7\16\2\2CD\7\13\2\2DF\7\16\2\2EC\3\2\2\2FI\3\2\2\2GE\3\2\2\2GH\3\2\2"+
+		"\2HJ\3\2\2\2IG\3\2\2\2JK\7\4\2\2KL\7\22\2\2L]\7\6\2\2MN\7\16\2\2NO\7\f"+
+		"\2\2OP\7\16\2\2PQ\7\n\2\2QV\7\16\2\2RS\7\13\2\2SU\7\16\2\2TR\3\2\2\2U"+
+		"X\3\2\2\2VT\3\2\2\2VW\3\2\2\2WY\3\2\2\2XV\3\2\2\2YZ\7\4\2\2Z[\7\22\2\2"+
+		"[]\7\6\2\2\\>\3\2\2\2\\M\3\2\2\2]\21\3\2\2\2^_\7\r\2\2_`\7\4\2\2`a\5\24"+
+		"\13\2a\23\3\2\2\2bc\7\16\2\2c\25\3\2\2\2\7*8GV\\";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
