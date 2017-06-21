@@ -11,7 +11,7 @@ public class HelloRunner
     	{
     		String everything = "";
     		
-    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/dh_auth.AnB"));
+    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/From_A_Secret.AnB"));
     		try {
     		    StringBuilder sb = new StringBuilder();
     		    String line = br.readLine();
@@ -42,7 +42,7 @@ public class HelloRunner
     		
 //    		ParseTree protocol = tree.getChild(0);
 //    		
-    		System.out.println(tree.getChild(3).toStringTree());
+//    		System.out.println(tree.getChild(3).toStringTree());
 //    		System.out.println(tree.getChild(2).getChild(2).toStringTree());
 //    		System.out.println(tree.getChild(2).getChild(3).toStringTree());
 //    		System.out.println(tree.getChild(2).getChild(4).toStringTree());

@@ -130,6 +130,18 @@ public class ANBBaseListener implements ANBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnb_Goals(ANBParser.Anb_GoalsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAnb_Goal(ANBParser.Anb_GoalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnb_Goal(ANBParser.Anb_GoalContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

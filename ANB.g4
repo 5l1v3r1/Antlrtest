@@ -11,16 +11,6 @@ ANB_COMMENT:
 WS:  
 		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
     	;
-    	
-//ANB_MESSAGE:
-//		ANB_Identifier
-//		|ANB_Identifier '(' ANB_MESSAGE ')' 
-//		;
-
-//ANB_TYPE:
-//		ANB_Identifier
-//		|ANB_Identifier (',' ANB_Identifier )*
-//		;
 
 ANB_KNOW: 
 		ANB_Identifier (',' ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
@@ -36,7 +26,7 @@ ANB_CHANNEL:
 		;
 
 anb_Protocol:
-		anb_ProtocolName anb_Types anb_Knowlegde anb_Actions //anb_Goals
+		anb_ProtocolName anb_Types anb_Knowlegde anb_Actions anb_Goals
 		;
 		
 anb_ProtocolName: 
@@ -48,9 +38,8 @@ anb_Types:
 		;
 
 anb_Type:
-		//ANB_Identifier ANB_TYPE
 		ANB_Identifier ANB_KNOW
-		//(ANB_Identifier ANB_Identifier (',' ANB_Identifier )* )
+		|ANB_Identifier ANB_Identifier
 		;
 
 anb_Knowlegde: 
@@ -72,10 +61,17 @@ anb_Action:
 anb_SubAction:
 		ANB_Identifier
 		|ANB_KNOW
-		|'{' ANB_KNOW '}' ANB_KNOW*
-		|'{' '|' ANB_KNOW '|' '}' ANB_KNOW*
+		|'{' anb_SubAction '}' anb_SubAction*
+		|'{' '|' anb_SubAction '|' '}' anb_SubAction*
 		;
 
 anb_Goals: 
-		'Goals' ':' ANB_Identifier
+		'Goals' ':' anb_Goal+
+		;
+		
+anb_Goal:
+		(ANB_KNOW | ANB_Identifier) 'weakly' 'authenticates' (ANB_KNOW | ANB_Identifier) 'on' (ANB_KNOW | ANB_Identifier)
+		|(ANB_KNOW | ANB_Identifier) 'authenticates' (ANB_KNOW | ANB_Identifier) 'on' (ANB_KNOW | ANB_Identifier)
+		|(ANB_KNOW | ANB_Identifier) 'secret' 'between' (ANB_KNOW | ANB_Identifier)
+		|(ANB_KNOW | ANB_Identifier) 'secret' 'of' (ANB_KNOW | ANB_Identifier)
 		;

@@ -106,4 +106,14 @@ public interface ANBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAnb_Goals(ANBParser.Anb_GoalsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ANBParser#anb_Goal}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnb_Goal(ANBParser.Anb_GoalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ANBParser#anb_Goal}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnb_Goal(ANBParser.Anb_GoalContext ctx);
 }
