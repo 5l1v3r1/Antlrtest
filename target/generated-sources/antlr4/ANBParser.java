@@ -17,26 +17,24 @@ public class ANBParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, ANB_Identifier=12, ANB_String=13, ANB_COMMENT=14, WS=15, 
-		ANB_Message=16, ANB_ListIdentifier=17, ANB_ListKnow=18, ANB_VARIABLES=19, 
-		ANB_KNOW_FUNCTION=20;
+		T__9=10, ANB_Identifier=11, ANB_COMMENT=12, WS=13, ANB_KNOW=14, ANB_KNOW_FUNCTION=15, 
+		ANB_CHANNEL=16;
 	public static final int
-		RULE_anb_Document = 0, RULE_anb_Protocol = 1, RULE_anb_Types = 2, RULE_anb_type = 3, 
-		RULE_anb_Knowlegde = 4, RULE_anb_Know = 5, RULE_anb_Actions = 6, RULE_anb_Action = 7, 
-		RULE_anb_Goals = 8, RULE_anb_goal = 9;
+		RULE_anb_Protocol = 0, RULE_anb_ProtocolName = 1, RULE_anb_Types = 2, 
+		RULE_anb_Type = 3, RULE_anb_Knowlegde = 4, RULE_anb_know = 5, RULE_anb_Actions = 6, 
+		RULE_anb_Action = 7, RULE_anb_SubAction = 8, RULE_anb_Goals = 9;
 	public static final String[] ruleNames = {
-		"anb_Document", "anb_Protocol", "anb_Types", "anb_type", "anb_Knowlegde", 
-		"anb_Know", "anb_Actions", "anb_Action", "anb_Goals", "anb_goal"
+		"anb_Protocol", "anb_ProtocolName", "anb_Types", "anb_Type", "anb_Knowlegde", 
+		"anb_know", "anb_Actions", "anb_Action", "anb_SubAction", "anb_Goals"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'Protocol'", "':'", "'Types'", "';'", "'Knowledge'", "'Actions'", 
-		"'->'", "'('", "','", "'<-'", "'Goals'"
+		"'{'", "'}'", "'|'", "'Goals'", null, null, null, null, null, "'->'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		"ANB_Identifier", "ANB_String", "ANB_COMMENT", "WS", "ANB_Message", "ANB_ListIdentifier", 
-		"ANB_ListKnow", "ANB_VARIABLES", "ANB_KNOW_FUNCTION"
+		null, null, null, null, null, null, null, null, null, null, null, "ANB_Identifier", 
+		"ANB_COMMENT", "WS", "ANB_KNOW", "ANB_KNOW_FUNCTION", "ANB_CHANNEL"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -87,9 +85,9 @@ public class ANBParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class Anb_DocumentContext extends ParserRuleContext {
-		public Anb_ProtocolContext anb_Protocol() {
-			return getRuleContext(Anb_ProtocolContext.class,0);
+	public static class Anb_ProtocolContext extends ParserRuleContext {
+		public Anb_ProtocolNameContext anb_ProtocolName() {
+			return getRuleContext(Anb_ProtocolNameContext.class,0);
 		}
 		public Anb_TypesContext anb_Types() {
 			return getRuleContext(Anb_TypesContext.class,0);
@@ -100,54 +98,6 @@ public class ANBParser extends Parser {
 		public Anb_ActionsContext anb_Actions() {
 			return getRuleContext(Anb_ActionsContext.class,0);
 		}
-		public Anb_GoalsContext anb_Goals() {
-			return getRuleContext(Anb_GoalsContext.class,0);
-		}
-		public Anb_DocumentContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_anb_Document; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_Document(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_Document(this);
-		}
-	}
-
-	public final Anb_DocumentContext anb_Document() throws RecognitionException {
-		Anb_DocumentContext _localctx = new Anb_DocumentContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_anb_Document);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(20);
-			anb_Protocol();
-			setState(21);
-			anb_Types();
-			setState(22);
-			anb_Knowlegde();
-			setState(23);
-			anb_Actions();
-			setState(24);
-			anb_Goals();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Anb_ProtocolContext extends ParserRuleContext {
-		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
 		public Anb_ProtocolContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -164,15 +114,58 @@ public class ANBParser extends Parser {
 
 	public final Anb_ProtocolContext anb_Protocol() throws RecognitionException {
 		Anb_ProtocolContext _localctx = new Anb_ProtocolContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_anb_Protocol);
+		enterRule(_localctx, 0, RULE_anb_Protocol);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
+			setState(20);
+			anb_ProtocolName();
+			setState(21);
+			anb_Types();
+			setState(22);
+			anb_Knowlegde();
+			setState(23);
+			anb_Actions();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Anb_ProtocolNameContext extends ParserRuleContext {
+		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
+		public Anb_ProtocolNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_anb_ProtocolName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_ProtocolName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_ProtocolName(this);
+		}
+	}
+
+	public final Anb_ProtocolNameContext anb_ProtocolName() throws RecognitionException {
+		Anb_ProtocolNameContext _localctx = new Anb_ProtocolNameContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_anb_ProtocolName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(25);
 			match(T__0);
-			setState(27);
+			setState(26);
 			match(T__1);
-			setState(28);
+			setState(27);
 			match(ANB_Identifier);
 			}
 		}
@@ -188,8 +181,11 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_TypesContext extends ParserRuleContext {
-		public Anb_typeContext anb_type() {
-			return getRuleContext(Anb_typeContext.class,0);
+		public List<Anb_TypeContext> anb_Type() {
+			return getRuleContexts(Anb_TypeContext.class);
+		}
+		public Anb_TypeContext anb_Type(int i) {
+			return getRuleContext(Anb_TypeContext.class,i);
 		}
 		public Anb_TypesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -208,15 +204,42 @@ public class ANBParser extends Parser {
 	public final Anb_TypesContext anb_Types() throws RecognitionException {
 		Anb_TypesContext _localctx = new Anb_TypesContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_anb_Types);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(29);
 			match(T__2);
-			setState(31);
+			setState(30);
 			match(T__1);
-			setState(32);
-			anb_type();
+			setState(35); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				setState(35);
+				_errHandler.sync(this);
+				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+				case 1:
+					{
+					setState(31);
+					anb_Type();
+					setState(32);
+					match(T__3);
+					}
+					break;
+				case 2:
+					{
+					setState(34);
+					anb_Type();
+					}
+					break;
+				}
+				}
+				setState(37); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==ANB_Identifier );
 			}
 		}
 		catch (RecognitionException re) {
@@ -230,55 +253,33 @@ public class ANBParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Anb_typeContext extends ParserRuleContext {
+	public static class Anb_TypeContext extends ParserRuleContext {
 		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
-		public TerminalNode ANB_ListIdentifier() { return getToken(ANBParser.ANB_ListIdentifier, 0); }
-		public Anb_typeContext anb_type() {
-			return getRuleContext(Anb_typeContext.class,0);
-		}
-		public Anb_typeContext(ParserRuleContext parent, int invokingState) {
+		public TerminalNode ANB_KNOW() { return getToken(ANBParser.ANB_KNOW, 0); }
+		public Anb_TypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_anb_type; }
+		@Override public int getRuleIndex() { return RULE_anb_Type; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_type(this);
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_Type(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_type(this);
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_Type(this);
 		}
 	}
 
-	public final Anb_typeContext anb_type() throws RecognitionException {
-		Anb_typeContext _localctx = new Anb_typeContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_anb_type);
+	public final Anb_TypeContext anb_Type() throws RecognitionException {
+		Anb_TypeContext _localctx = new Anb_TypeContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_anb_Type);
 		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(39);
+			match(ANB_Identifier);
 			setState(40);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(34);
-				match(ANB_Identifier);
-				setState(35);
-				match(ANB_ListIdentifier);
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(36);
-				match(ANB_Identifier);
-				setState(37);
-				match(ANB_ListIdentifier);
-				setState(38);
-				match(T__3);
-				setState(39);
-				anb_type();
-				}
-				break;
+			match(ANB_KNOW);
 			}
 		}
 		catch (RecognitionException re) {
@@ -293,8 +294,11 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_KnowlegdeContext extends ParserRuleContext {
-		public Anb_KnowContext anb_Know() {
-			return getRuleContext(Anb_KnowContext.class,0);
+		public List<Anb_knowContext> anb_know() {
+			return getRuleContexts(Anb_knowContext.class);
+		}
+		public Anb_knowContext anb_know(int i) {
+			return getRuleContext(Anb_knowContext.class,i);
 		}
 		public Anb_KnowlegdeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -313,6 +317,7 @@ public class ANBParser extends Parser {
 	public final Anb_KnowlegdeContext anb_Knowlegde() throws RecognitionException {
 		Anb_KnowlegdeContext _localctx = new Anb_KnowlegdeContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_anb_Knowlegde);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -320,8 +325,34 @@ public class ANBParser extends Parser {
 			match(T__4);
 			setState(43);
 			match(T__1);
-			setState(44);
-			anb_Know();
+			setState(48); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				setState(48);
+				_errHandler.sync(this);
+				switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+				case 1:
+					{
+					setState(44);
+					anb_know();
+					setState(45);
+					match(T__3);
+					}
+					break;
+				case 2:
+					{
+					setState(47);
+					anb_know();
+					}
+					break;
+				}
+				}
+				setState(50); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==ANB_Identifier );
 			}
 		}
 		catch (RecognitionException re) {
@@ -335,59 +366,35 @@ public class ANBParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Anb_KnowContext extends ParserRuleContext {
+	public static class Anb_knowContext extends ParserRuleContext {
 		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
-		public TerminalNode ANB_VARIABLES() { return getToken(ANBParser.ANB_VARIABLES, 0); }
-		public Anb_KnowContext anb_Know() {
-			return getRuleContext(Anb_KnowContext.class,0);
-		}
-		public Anb_KnowContext(ParserRuleContext parent, int invokingState) {
+		public TerminalNode ANB_KNOW() { return getToken(ANBParser.ANB_KNOW, 0); }
+		public Anb_knowContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_anb_Know; }
+		@Override public int getRuleIndex() { return RULE_anb_know; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_Know(this);
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_know(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_Know(this);
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_know(this);
 		}
 	}
 
-	public final Anb_KnowContext anb_Know() throws RecognitionException {
-		Anb_KnowContext _localctx = new Anb_KnowContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_anb_Know);
+	public final Anb_knowContext anb_know() throws RecognitionException {
+		Anb_knowContext _localctx = new Anb_knowContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_anb_know);
 		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(52);
+			match(ANB_Identifier);
+			setState(53);
+			match(T__1);
 			setState(54);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(46);
-				match(ANB_Identifier);
-				setState(47);
-				match(T__1);
-				setState(48);
-				match(ANB_VARIABLES);
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(49);
-				match(ANB_Identifier);
-				setState(50);
-				match(T__1);
-				setState(51);
-				match(ANB_VARIABLES);
-				setState(52);
-				match(T__3);
-				setState(53);
-				anb_Know();
-				}
-				break;
+			match(ANB_KNOW);
 			}
 		}
 		catch (RecognitionException re) {
@@ -402,8 +409,11 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_ActionsContext extends ParserRuleContext {
-		public Anb_ActionContext anb_Action() {
-			return getRuleContext(Anb_ActionContext.class,0);
+		public List<Anb_ActionContext> anb_Action() {
+			return getRuleContexts(Anb_ActionContext.class);
+		}
+		public Anb_ActionContext anb_Action(int i) {
+			return getRuleContext(Anb_ActionContext.class,i);
 		}
 		public Anb_ActionsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -422,6 +432,7 @@ public class ANBParser extends Parser {
 	public final Anb_ActionsContext anb_Actions() throws RecognitionException {
 		Anb_ActionsContext _localctx = new Anb_ActionsContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_anb_Actions);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -429,8 +440,20 @@ public class ANBParser extends Parser {
 			match(T__5);
 			setState(57);
 			match(T__1);
-			setState(58);
-			anb_Action();
+			setState(59); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(58);
+				anb_Action();
+				}
+				}
+				setState(61); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==ANB_Identifier );
 			}
 		}
 		catch (RecognitionException re) {
@@ -449,7 +472,13 @@ public class ANBParser extends Parser {
 		public TerminalNode ANB_Identifier(int i) {
 			return getToken(ANBParser.ANB_Identifier, i);
 		}
-		public TerminalNode ANB_Message() { return getToken(ANBParser.ANB_Message, 0); }
+		public TerminalNode ANB_CHANNEL() { return getToken(ANBParser.ANB_CHANNEL, 0); }
+		public List<Anb_SubActionContext> anb_SubAction() {
+			return getRuleContexts(Anb_SubActionContext.class);
+		}
+		public Anb_SubActionContext anb_SubAction(int i) {
+			return getRuleContext(Anb_SubActionContext.class,i);
+		}
 		public Anb_ActionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -467,83 +496,149 @@ public class ANBParser extends Parser {
 	public final Anb_ActionContext anb_Action() throws RecognitionException {
 		Anb_ActionContext _localctx = new Anb_ActionContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_anb_Action);
-		int _la;
 		try {
-			setState(90);
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(63);
+			match(ANB_Identifier);
+			setState(64);
+			match(ANB_CHANNEL);
+			setState(65);
+			match(ANB_Identifier);
+			setState(66);
+			match(T__1);
+			setState(68); 
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			_alt = 1;
+			do {
+				switch (_alt) {
+				case 1:
+					{
+					{
+					setState(67);
+					anb_SubAction();
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				setState(70); 
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Anb_SubActionContext extends ParserRuleContext {
+		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
+		public List<TerminalNode> ANB_KNOW() { return getTokens(ANBParser.ANB_KNOW); }
+		public TerminalNode ANB_KNOW(int i) {
+			return getToken(ANBParser.ANB_KNOW, i);
+		}
+		public Anb_SubActionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_anb_SubAction; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_SubAction(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_SubAction(this);
+		}
+	}
+
+	public final Anb_SubActionContext anb_SubAction() throws RecognitionException {
+		Anb_SubActionContext _localctx = new Anb_SubActionContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_anb_SubAction);
+		try {
+			int _alt;
+			setState(94);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(60);
-				match(ANB_Identifier);
-				setState(61);
-				match(T__6);
-				setState(62);
-				match(ANB_Identifier);
-				setState(63);
-				match(T__7);
-				setState(64);
-				match(ANB_Identifier);
-				setState(69);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==T__8) {
-					{
-					{
-					setState(65);
-					match(T__8);
-					setState(66);
-					match(ANB_Identifier);
-					}
-					}
-					setState(71);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
 				setState(72);
-				match(T__1);
-				setState(73);
-				match(ANB_Message);
-				setState(74);
-				match(T__3);
+				match(ANB_Identifier);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(75);
-				match(ANB_Identifier);
-				setState(76);
-				match(T__9);
-				setState(77);
-				match(ANB_Identifier);
-				setState(78);
-				match(T__7);
-				setState(79);
-				match(ANB_Identifier);
-				setState(84);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==T__8) {
-					{
-					{
-					setState(80);
-					match(T__8);
-					setState(81);
-					match(ANB_Identifier);
-					}
-					}
-					setState(86);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
+				setState(73);
+				match(ANB_KNOW);
 				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(74);
+				match(T__6);
+				setState(75);
+				match(ANB_KNOW);
+				setState(76);
+				match(T__7);
+				setState(80);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(77);
+						match(ANB_KNOW);
+						}
+						} 
+					}
+					setState(82);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+				}
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(83);
+				match(T__6);
+				setState(84);
+				match(T__8);
+				setState(85);
+				match(ANB_KNOW);
+				setState(86);
+				match(T__8);
 				setState(87);
-				match(T__1);
-				setState(88);
-				match(ANB_Message);
-				setState(89);
-				match(T__3);
+				match(T__7);
+				setState(91);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(88);
+						match(ANB_KNOW);
+						}
+						} 
+					}
+					setState(93);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+				}
 				}
 				break;
 			}
@@ -560,9 +655,7 @@ public class ANBParser extends Parser {
 	}
 
 	public static class Anb_GoalsContext extends ParserRuleContext {
-		public Anb_goalContext anb_goal() {
-			return getRuleContext(Anb_goalContext.class,0);
-		}
+		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
 		public Anb_GoalsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -579,52 +672,15 @@ public class ANBParser extends Parser {
 
 	public final Anb_GoalsContext anb_Goals() throws RecognitionException {
 		Anb_GoalsContext _localctx = new Anb_GoalsContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_anb_Goals);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(92);
-			match(T__10);
-			setState(93);
-			match(T__1);
-			setState(94);
-			anb_goal();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Anb_goalContext extends ParserRuleContext {
-		public TerminalNode ANB_Identifier() { return getToken(ANBParser.ANB_Identifier, 0); }
-		public Anb_goalContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_anb_goal; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).enterAnb_goal(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ANBListener ) ((ANBListener)listener).exitAnb_goal(this);
-		}
-	}
-
-	public final Anb_goalContext anb_goal() throws RecognitionException {
-		Anb_goalContext _localctx = new Anb_goalContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_anb_goal);
+		enterRule(_localctx, 18, RULE_anb_Goals);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(96);
+			match(T__9);
+			setState(97);
+			match(T__1);
+			setState(98);
 			match(ANB_Identifier);
 			}
 		}
@@ -640,29 +696,31 @@ public class ANBParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26e\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\22g\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5"+
-		"\3\5\3\5\5\5+\n\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7"+
-		"9\n\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tF\n\t\f\t\16\tI\13"+
-		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tU\n\t\f\t\16\tX\13\t\3\t"+
-		"\3\t\3\t\5\t]\n\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16"+
-		"\20\22\24\2\2\2_\2\26\3\2\2\2\4\34\3\2\2\2\6 \3\2\2\2\b*\3\2\2\2\n,\3"+
-		"\2\2\2\f8\3\2\2\2\16:\3\2\2\2\20\\\3\2\2\2\22^\3\2\2\2\24b\3\2\2\2\26"+
-		"\27\5\4\3\2\27\30\5\6\4\2\30\31\5\n\6\2\31\32\5\16\b\2\32\33\5\22\n\2"+
-		"\33\3\3\2\2\2\34\35\7\3\2\2\35\36\7\4\2\2\36\37\7\16\2\2\37\5\3\2\2\2"+
-		" !\7\5\2\2!\"\7\4\2\2\"#\5\b\5\2#\7\3\2\2\2$%\7\16\2\2%+\7\23\2\2&\'\7"+
-		"\16\2\2\'(\7\23\2\2()\7\6\2\2)+\5\b\5\2*$\3\2\2\2*&\3\2\2\2+\t\3\2\2\2"+
-		",-\7\7\2\2-.\7\4\2\2./\5\f\7\2/\13\3\2\2\2\60\61\7\16\2\2\61\62\7\4\2"+
-		"\2\629\7\25\2\2\63\64\7\16\2\2\64\65\7\4\2\2\65\66\7\25\2\2\66\67\7\6"+
-		"\2\2\679\5\f\7\28\60\3\2\2\28\63\3\2\2\29\r\3\2\2\2:;\7\b\2\2;<\7\4\2"+
-		"\2<=\5\20\t\2=\17\3\2\2\2>?\7\16\2\2?@\7\t\2\2@A\7\16\2\2AB\7\n\2\2BG"+
-		"\7\16\2\2CD\7\13\2\2DF\7\16\2\2EC\3\2\2\2FI\3\2\2\2GE\3\2\2\2GH\3\2\2"+
-		"\2HJ\3\2\2\2IG\3\2\2\2JK\7\4\2\2KL\7\22\2\2L]\7\6\2\2MN\7\16\2\2NO\7\f"+
-		"\2\2OP\7\16\2\2PQ\7\n\2\2QV\7\16\2\2RS\7\13\2\2SU\7\16\2\2TR\3\2\2\2U"+
-		"X\3\2\2\2VT\3\2\2\2VW\3\2\2\2WY\3\2\2\2XV\3\2\2\2YZ\7\4\2\2Z[\7\22\2\2"+
-		"[]\7\6\2\2\\>\3\2\2\2\\M\3\2\2\2]\21\3\2\2\2^_\7\r\2\2_`\7\4\2\2`a\5\24"+
-		"\13\2a\23\3\2\2\2bc\7\16\2\2c\25\3\2\2\2\7*8GV\\";
+		"\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\6\4&\n\4\r"+
+		"\4\16\4\'\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\6\6\63\n\6\r\6\16\6\64\3"+
+		"\7\3\7\3\7\3\7\3\b\3\b\3\b\6\b>\n\b\r\b\16\b?\3\t\3\t\3\t\3\t\3\t\6\t"+
+		"G\n\t\r\t\16\tH\3\n\3\n\3\n\3\n\3\n\3\n\7\nQ\n\n\f\n\16\nT\13\n\3\n\3"+
+		"\n\3\n\3\n\3\n\3\n\7\n\\\n\n\f\n\16\n_\13\n\5\na\n\n\3\13\3\13\3\13\3"+
+		"\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\2g\2\26\3\2\2\2\4\33\3\2\2"+
+		"\2\6\37\3\2\2\2\b)\3\2\2\2\n,\3\2\2\2\f\66\3\2\2\2\16:\3\2\2\2\20A\3\2"+
+		"\2\2\22`\3\2\2\2\24b\3\2\2\2\26\27\5\4\3\2\27\30\5\6\4\2\30\31\5\n\6\2"+
+		"\31\32\5\16\b\2\32\3\3\2\2\2\33\34\7\3\2\2\34\35\7\4\2\2\35\36\7\r\2\2"+
+		"\36\5\3\2\2\2\37 \7\5\2\2 %\7\4\2\2!\"\5\b\5\2\"#\7\6\2\2#&\3\2\2\2$&"+
+		"\5\b\5\2%!\3\2\2\2%$\3\2\2\2&\'\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(\7\3\2\2"+
+		"\2)*\7\r\2\2*+\7\20\2\2+\t\3\2\2\2,-\7\7\2\2-\62\7\4\2\2./\5\f\7\2/\60"+
+		"\7\6\2\2\60\63\3\2\2\2\61\63\5\f\7\2\62.\3\2\2\2\62\61\3\2\2\2\63\64\3"+
+		"\2\2\2\64\62\3\2\2\2\64\65\3\2\2\2\65\13\3\2\2\2\66\67\7\r\2\2\678\7\4"+
+		"\2\289\7\20\2\29\r\3\2\2\2:;\7\b\2\2;=\7\4\2\2<>\5\20\t\2=<\3\2\2\2>?"+
+		"\3\2\2\2?=\3\2\2\2?@\3\2\2\2@\17\3\2\2\2AB\7\r\2\2BC\7\22\2\2CD\7\r\2"+
+		"\2DF\7\4\2\2EG\5\22\n\2FE\3\2\2\2GH\3\2\2\2HF\3\2\2\2HI\3\2\2\2I\21\3"+
+		"\2\2\2Ja\7\r\2\2Ka\7\20\2\2LM\7\t\2\2MN\7\20\2\2NR\7\n\2\2OQ\7\20\2\2"+
+		"PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2Sa\3\2\2\2TR\3\2\2\2UV\7\t\2\2"+
+		"VW\7\13\2\2WX\7\20\2\2XY\7\13\2\2Y]\7\n\2\2Z\\\7\20\2\2[Z\3\2\2\2\\_\3"+
+		"\2\2\2][\3\2\2\2]^\3\2\2\2^a\3\2\2\2_]\3\2\2\2`J\3\2\2\2`K\3\2\2\2`L\3"+
+		"\2\2\2`U\3\2\2\2a\23\3\2\2\2bc\7\f\2\2cd\7\4\2\2de\7\r\2\2e\25\3\2\2\2"+
+		"\13%\'\62\64?HR]`";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -15,18 +15,6 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Document(ANBParser.Anb_DocumentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAnb_Document(ANBParser.Anb_DocumentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -34,6 +22,18 @@ public class ANBBaseListener implements ANBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -51,13 +51,13 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_type(ANBParser.Anb_typeContext ctx) { }
+	@Override public void enterAnb_Type(ANBParser.Anb_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_type(ANBParser.Anb_typeContext ctx) { }
+	@Override public void exitAnb_Type(ANBParser.Anb_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -75,13 +75,13 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Know(ANBParser.Anb_KnowContext ctx) { }
+	@Override public void enterAnb_know(ANBParser.Anb_knowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Know(ANBParser.Anb_KnowContext ctx) { }
+	@Override public void exitAnb_know(ANBParser.Anb_knowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -111,6 +111,18 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAnb_SubAction(ANBParser.Anb_SubActionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnb_SubAction(ANBParser.Anb_SubActionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAnb_Goals(ANBParser.Anb_GoalsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -118,18 +130,6 @@ public class ANBBaseListener implements ANBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnb_Goals(ANBParser.Anb_GoalsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAnb_goal(ANBParser.Anb_goalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAnb_goal(ANBParser.Anb_goalContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

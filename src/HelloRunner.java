@@ -34,7 +34,7 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
-    		ParseTree tree = anbparser.anb_Document(); // begin parsing at rule 'r'
+    		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
     		
     		System.out.println(tree.toStringTree(anbparser));
     		
@@ -42,7 +42,14 @@ public class HelloRunner
     		
 //    		ParseTree protocol = tree.getChild(0);
 //    		
-//    		System.out.println(tree.getChild(1).getChild(2).getChild(0).toStringTree());
+    		System.out.println(tree.getChild(3).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(2).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(3).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(4).toStringTree());
+//    		
+//    		System.out.println(tree.getChild(2).getChild(4).getChildCount());
+//    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
+    		
 //    		
 //    		CSVLexer lexer3 = new CSVLexer(input);
 //    		

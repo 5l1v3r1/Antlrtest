@@ -7,16 +7,6 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface ANBListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link ANBParser#anb_Document}.
-	 * @param ctx the parse tree
-	 */
-	void enterAnb_Document(ANBParser.Anb_DocumentContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ANBParser#anb_Document}.
-	 * @param ctx the parse tree
-	 */
-	void exitAnb_Document(ANBParser.Anb_DocumentContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ANBParser#anb_Protocol}.
 	 * @param ctx the parse tree
 	 */
@@ -26,6 +16,16 @@ public interface ANBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAnb_Protocol(ANBParser.Anb_ProtocolContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ANBParser#anb_ProtocolName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ANBParser#anb_ProtocolName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ANBParser#anb_Types}.
 	 * @param ctx the parse tree
@@ -37,15 +37,15 @@ public interface ANBListener extends ParseTreeListener {
 	 */
 	void exitAnb_Types(ANBParser.Anb_TypesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ANBParser#anb_type}.
+	 * Enter a parse tree produced by {@link ANBParser#anb_Type}.
 	 * @param ctx the parse tree
 	 */
-	void enterAnb_type(ANBParser.Anb_typeContext ctx);
+	void enterAnb_Type(ANBParser.Anb_TypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ANBParser#anb_type}.
+	 * Exit a parse tree produced by {@link ANBParser#anb_Type}.
 	 * @param ctx the parse tree
 	 */
-	void exitAnb_type(ANBParser.Anb_typeContext ctx);
+	void exitAnb_Type(ANBParser.Anb_TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ANBParser#anb_Knowlegde}.
 	 * @param ctx the parse tree
@@ -57,15 +57,15 @@ public interface ANBListener extends ParseTreeListener {
 	 */
 	void exitAnb_Knowlegde(ANBParser.Anb_KnowlegdeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ANBParser#anb_Know}.
+	 * Enter a parse tree produced by {@link ANBParser#anb_know}.
 	 * @param ctx the parse tree
 	 */
-	void enterAnb_Know(ANBParser.Anb_KnowContext ctx);
+	void enterAnb_know(ANBParser.Anb_knowContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ANBParser#anb_Know}.
+	 * Exit a parse tree produced by {@link ANBParser#anb_know}.
 	 * @param ctx the parse tree
 	 */
-	void exitAnb_Know(ANBParser.Anb_KnowContext ctx);
+	void exitAnb_know(ANBParser.Anb_knowContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ANBParser#anb_Actions}.
 	 * @param ctx the parse tree
@@ -87,6 +87,16 @@ public interface ANBListener extends ParseTreeListener {
 	 */
 	void exitAnb_Action(ANBParser.Anb_ActionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ANBParser#anb_SubAction}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnb_SubAction(ANBParser.Anb_SubActionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ANBParser#anb_SubAction}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnb_SubAction(ANBParser.Anb_SubActionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ANBParser#anb_Goals}.
 	 * @param ctx the parse tree
 	 */
@@ -96,14 +106,4 @@ public interface ANBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAnb_Goals(ANBParser.Anb_GoalsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ANBParser#anb_goal}.
-	 * @param ctx the parse tree
-	 */
-	void enterAnb_goal(ANBParser.Anb_goalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ANBParser#anb_goal}.
-	 * @param ctx the parse tree
-	 */
-	void exitAnb_goal(ANBParser.Anb_goalContext ctx);
 }
