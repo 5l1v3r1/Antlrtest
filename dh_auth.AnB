@@ -1,7 +1,7 @@
 Protocol: DH_auth
 
 Types:
-	Agent A,B;
+	Agent A,B
 	Number Msg,XxX,YxY,g,empty;
 	Function pk,sk,hmac,hash
 

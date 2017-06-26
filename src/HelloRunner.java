@@ -11,7 +11,7 @@ public class HelloRunner
     	{
     		String everything = "";
     		
-    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/dh_auth.AnB"));
+    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/From_A_Secret.AnB"));
     		try {
     		    StringBuilder sb = new StringBuilder();
     		    String line = br.readLine();
@@ -34,10 +34,23 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
-    		ParseTree tree = anbparser.anbDocument(); // begin parsing at rule 'r'
+    		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
     		
     		System.out.println(tree.toStringTree(anbparser));
     		
+    		
+    		
+//    		ParseTree protocol = tree.getChild(0);
+//    		
+//    		System.out.println(tree.getChild(3).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(2).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(3).toStringTree());
+//    		System.out.println(tree.getChild(2).getChild(4).toStringTree());
+//    		
+//    		System.out.println(tree.getChild(2).getChild(4).getChildCount());
+//    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
+    		
+//    		
 //    		CSVLexer lexer3 = new CSVLexer(input);
 //    		
 //    		CommonTokenStream tokens3 = new CommonTokenStream(lexer3);
