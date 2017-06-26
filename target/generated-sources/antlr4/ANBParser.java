@@ -32,7 +32,7 @@ public class ANBParser extends Parser {
 	private static final String[] _LITERAL_NAMES = {
 		null, "'Protocol'", "':'", "'Types'", "';'", "'Knowledge'", "'Actions'", 
 		"'{'", "'}'", "'|'", "'Goals'", "'weakly'", "'authenticates'", "'on'", 
-		"'secret'", "'between'", "'of'", null, null, null, null, null, "'->'"
+		"'secret'", "'between'", "'of'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 

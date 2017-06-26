@@ -23,6 +23,9 @@ ANB_KNOW_FUNCTION:
 		
 ANB_CHANNEL:
 		'->'
+		|'*->*'
+		|'*->'
+		|'->*'
 		;
 
 anb_Protocol:
