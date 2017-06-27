@@ -1,24 +1,17 @@
-package gui;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JFileChooser;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-
 
 
 public class fileReader extends JFrame {
@@ -101,7 +94,7 @@ public class fileReader extends JFrame {
 				{
 					System.out.println("click analized");
 					
-					//AtnlrHandler basic = new AtnlrHandler();
+					AtnlrHandler basic = new AtnlrHandler();
 					
 				}
 			}
