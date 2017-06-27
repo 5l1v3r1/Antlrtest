@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -94,7 +95,15 @@ public class fileReader extends JFrame {
 				{
 					System.out.println("click analized");
 					
-					AtnlrHandler basic = new AtnlrHandler();
+					//AtnlrHandler basic = new AtnlrHandler();
+					
+					try {
+						AtnlrHandler basic = new AtnlrHandler();
+						basic.test(openPath.getText().toString());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}
 			}

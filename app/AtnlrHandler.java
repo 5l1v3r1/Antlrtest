@@ -12,7 +12,7 @@ public class AtnlrHandler {
 	{
 		String everything = "";
 		
-		BufferedReader br = new BufferedReader(new FileReader("./study_cases/From_A_Secret.AnB"));
+		BufferedReader br = new BufferedReader(new FileReader(path));
 		try {
 		    StringBuilder sb = new StringBuilder();
 		    String line = br.readLine();
