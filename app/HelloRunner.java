@@ -36,9 +36,13 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
+    		anbparser.setBuildParseTree(true);
+    		
     		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
     		
     		System.out.println(tree.toStringTree(anbparser));
+    		
+    		 ParseTreeWalker.DEFAULT.walk(null, tree);
     		
     		
     		
