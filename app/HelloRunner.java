@@ -1,8 +1,10 @@
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
 
 
 public class HelloRunner 
@@ -34,9 +36,13 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
+    		anbparser.setBuildParseTree(true);
+    		
     		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
     		
     		System.out.println(tree.toStringTree(anbparser));
+    		
+    		 ParseTreeWalker.DEFAULT.walk(null, tree);
     		
     		
     		
@@ -45,7 +51,7 @@ public class HelloRunner
 //    		System.out.println(tree.getChild(3).toStringTree());
 //    		System.out.println(tree.getChild(2).getChild(2).toStringTree());
 //    		System.out.println(tree.getChild(2).getChild(3).toStringTree());
-//    		System.out.println(tree.getChild(2).getChild(4).toStringTree());
+    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
 //    		
 //    		System.out.println(tree.getChild(2).getChild(4).getChildCount());
 //    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
