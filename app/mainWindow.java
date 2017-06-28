@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-public class fileReader extends JFrame {
+public class mainWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField openPath;
@@ -29,7 +29,7 @@ public class fileReader extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					fileReader frame = new fileReader();
+					mainWindow frame = new mainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class fileReader extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public fileReader() {
+	public mainWindow() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 516, 310);
@@ -93,10 +93,7 @@ public class fileReader extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(openPath.getText() != null && openPath.getText() != "")
 				{
-					System.out.println("click analized");
-					
-					//AtnlrHandler basic = new AtnlrHandler();
-					
+					System.out.println("click analized");					
 					try {
 						AtnlrHandler basic = new AtnlrHandler();
 						basic.test(openPath.getText().toString());
