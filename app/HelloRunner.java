@@ -2,10 +2,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
-
-
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class HelloRunner 
     {
@@ -36,63 +36,19 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
-    		anbparser.setBuildParseTree(true);
-    		
     		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
+    		
+    		ParseTreeWalker anbwalker = new ParseTreeWalker();
+    		
+    		ANBBaseListener anblistener = new ANBBaseListener();
+    		
+    		anbwalker.walk(anblistener, tree);
+    		
+    		//anbparser.setBuildParseTree(true);
     		
     		System.out.println(tree.toStringTree(anbparser));
     		
-    		 ParseTreeWalker.DEFAULT.walk(null, tree);
-    		
-    		
-    		
 //    		ParseTree protocol = tree.getChild(0);
-//    		
 //    		System.out.println(tree.getChild(3).toStringTree());
-//    		System.out.println(tree.getChild(2).getChild(2).toStringTree());
-//    		System.out.println(tree.getChild(2).getChild(3).toStringTree());
-    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
-//    		
-//    		System.out.println(tree.getChild(2).getChild(4).getChildCount());
-//    		System.out.println(tree.getChild(2).getChild(4).getChild(2).toStringTree());
-    		
-//    		
-//    		CSVLexer lexer3 = new CSVLexer(input);
-//    		
-//    		CommonTokenStream tokens3 = new CommonTokenStream(lexer3);
-//    		
-//    		CSVParser parser3 = new CSVParser(tokens3);
-//    		
-//    		ParseTree tree = parser3.csvFile(); // begin parsing at rule 'r'
-//    		
-//    		System.out.println(tree.toStringTree(parser3)); // print LISP-style tree
-    
-//    		ANTLRInputStream input2 = new ANTLRInputStream();
-//    		
-//    		@SuppressWarnings("deprecation")
-//			ANTLRInputStream input = new ANTLRInputStream( System.in);
-//    
-//    		HelloLexer lexer = new HelloLexer(input);
-//    		
-//    		HTMLLexer lexer2 = new HTMLLexer(input);
-//    		
-//    		CSVLexer lexer3 = new CSVLexer(input);
-//    
-//    		CommonTokenStream tokens = new CommonTokenStream(lexer);
-//    		
-//    		CommonTokenStream tokens2 = new CommonTokenStream(lexer2);
-//    		
-//    		CommonTokenStream tokens3 = new CommonTokenStream(lexer3);
-//    
-//    		HelloParser parser = new HelloParser(tokens);
-//    		
-//    		HTMLParser parser2 = new HTMLParser(tokens2);
-//    		
-//    		CSVParser parser3 = new CSVParser(tokens3);
-//    		
-//    		ParseTree tree = parser3.csvFile(); // begin parsing at rule 'r'
-//    		System.out.println(tree.toStringTree(parser3)); // print LISP-style tree
-    		
-    		
     	}
     }
