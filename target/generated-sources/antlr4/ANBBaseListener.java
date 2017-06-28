@@ -15,33 +15,25 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { 
-		System.out.println("Start Reading File");
-	}
+	@Override public void enterAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) {
-		System.out.println("End Reading File");
-	}
+	@Override public void exitAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) {
-		System.out.println("Protocol Name: "+ctx.ANB_Identifier());
-	}
+	@Override public void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) {
-		System.out.println("exit name protocol");
-	}
+	@Override public void exitAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

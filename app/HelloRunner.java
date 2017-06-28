@@ -13,7 +13,7 @@ public class HelloRunner
     	{
     		String everything = "";
     		
-    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/From_A_Secret.AnB"));
+    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/WMF.AnB"));
     		try {
     		    StringBuilder sb = new StringBuilder();
     		    String line = br.readLine();
@@ -36,7 +36,7 @@ public class HelloRunner
     		
     		ANBParser anbparser = new ANBParser(anbtokens);
     		
-    		ParseTree tree = anbparser.anb_Protocol(); // begin parsing at rule 'r'
+    		ParseTree tree = anbparser.anb_Protocol(); 
     		
     		ParseTreeWalker anbwalker = new ParseTreeWalker();
     		
