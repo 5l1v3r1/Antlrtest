@@ -13,7 +13,7 @@ public class HelloRunner
     	{
     		String everything = "";
     		
-    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/WMF.AnB"));
+    		BufferedReader br = new BufferedReader(new FileReader("./study_cases/WL92.AnB"));
     		try {
     		    StringBuilder sb = new StringBuilder();
     		    String line = br.readLine();

@@ -21,6 +21,10 @@ ANB_KNOW_FUNCTION:
 		ANB_Identifier '(' ( ANB_Identifier | ANB_KNOW_FUNCTION | ANB_KNOW) ')'
 		;
 		
+ANB_KNOW_CONDITION:
+		ANB_Identifier '!' '=' ANB_Identifier
+		;
+		
 ANB_CHANNEL:
 		'->'
 		|'*->*'
@@ -29,7 +33,7 @@ ANB_CHANNEL:
 		;
 
 anb_Protocol:
-		anb_ProtocolName anb_Types  anb_Knowlegde anb_Actions anb_Goals
+		anb_ProtocolName anb_Types anb_Knowlegde anb_Actions anb_Goals
 		;
 		
 anb_ProtocolName: 
@@ -51,6 +55,7 @@ anb_Knowlegde:
 		
 anb_know:
 		ANB_Identifier ':' ANB_KNOW
+		| 'where' ANB_KNOW_CONDITION (',' ANB_KNOW_CONDITION)*
 		;
 
 anb_Actions:
@@ -64,8 +69,8 @@ anb_Action:
 anb_SubAction:
 		ANB_Identifier
 		|ANB_KNOW
-		|'{' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '}' ANB_KNOW
-		|'{' '|' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '|' '}' ANB_KNOW
+		|'{' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '}' ( ANB_KNOW | ANB_Identifier )
+		|'{' '|' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '|' '}' ( ANB_KNOW | ANB_Identifier )
 		| anb_SubAction (',' anb_SubAction)+
 		;
 
@@ -78,4 +83,5 @@ anb_Goal:
 		|(ANB_KNOW | ANB_Identifier) 'authenticates' (ANB_KNOW | ANB_Identifier) 'on' (ANB_KNOW | ANB_Identifier)
 		|(ANB_KNOW | ANB_Identifier) 'secret' 'between' (ANB_KNOW | ANB_Identifier)
 		|(ANB_KNOW | ANB_Identifier) 'secret' 'of' (ANB_KNOW | ANB_Identifier)
+		| ANB_Identifier ANB_CHANNEL ANB_Identifier ':' ANB_Identifier
 		;
