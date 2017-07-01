@@ -3,11 +3,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -73,7 +75,7 @@ public class mainWindow extends JFrame {
 		btnSaveFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileOpenChooser = new JFileChooser();			
-				FileFilter filterAnBFiles = new FileNameExtensionFilter("AnB and AnBx files", "AnB", "AnBx");
+				FileFilter filterAnBFiles = new FileNameExtensionFilter("vlsm files", "vlsm");
 				fileOpenChooser.setFileFilter(filterAnBFiles);
 				fileOpenChooser.setAcceptAllFileFilterUsed(false);
 				
@@ -91,12 +93,23 @@ public class mainWindow extends JFrame {
 		JButton btnAnalize = new JButton("Analize Input File");
 		btnAnalize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(openPath.getText() != null && openPath.getText() != "")
+				if( !openPath.getText().equals(null) && !openPath.getText().equals(""))
 				{
-					System.out.println("click analized");					
+					String fileExtencion = openPath.getText().substring(openPath.getText().lastIndexOf('.') +1);
+					
+					System.out.println("Analizing the file");					
 					try {
-						AtnlrHandler basic = new AtnlrHandler();
-						basic.test(openPath.getText().toString());
+						if(fileExtencion.equalsIgnoreCase("anb"))
+						{
+							AnBHandler anbHandlerObject = new AnBHandler();
+							String file = anbHandlerObject.openFile(openPath.getText().toString());
+							anbHandlerObject.analizeFile(file);
+						}
+						else
+						{
+							AnBxHandler anbxHandlerObject = new AnBxHandler();
+							anbxHandlerObject.analizeFile(openPath.getText().toString());
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -109,6 +122,49 @@ public class mainWindow extends JFrame {
 		contentPane.add(btnAnalize);
 		
 		JButton btnCreateFile = new JButton("Create Vlsm");
+		btnCreateFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if( !openPath.getText().equals(null) && !openPath.getText().equals("")) 
+				{ 
+					if(!savePath.getText().equals(null) && !savePath.getText().equals(""))
+					{
+						String fileExtencion = openPath.getText().substring(openPath.getText().lastIndexOf('.') +1);						
+						String filepath = savePath.getText();	
+						String filename = savePath.getText().substring(savePath.getText().lastIndexOf('\\') +1);
+						String filecontent = "";
+						
+						try {
+							if(fileExtencion.equalsIgnoreCase("anb"))
+							{
+								AnBHandler anbHandlerObject = new AnBHandler();
+								String file = anbHandlerObject.openFile(openPath.getText().toString());
+								filecontent = anbHandlerObject.writeFile(file);
+								FileWriter  save=new FileWriter(filepath);
+					 			save.write(filecontent);
+					 			save.close();
+					 			JOptionPane.showMessageDialog(null,"The file"+filename+" was created successfully","Created New File",JOptionPane.INFORMATION_MESSAGE);
+							}
+							else
+							{
+								AnBxHandler anbxHandlerObject = new AnBxHandler();
+								anbxHandlerObject.analizeFile(openPath.getText().toString());
+							}
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Write the name of output file","Alert",JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"Select a AnB or Anbx file","Alert",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnCreateFile.setBounds(309, 158, 89, 23);
 		contentPane.add(btnCreateFile);
 		
