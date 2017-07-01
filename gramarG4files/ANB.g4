@@ -12,13 +12,18 @@ WS:
 		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
     	;
 
-ANB_KNOW: 
-		ANB_Identifier (',' ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
+ANB_KNOW:
+		 ANB_Identifier
+		|ANB_Identifier (',' ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
 		|ANB_KNOW_FUNCTION
 		;
 
 ANB_KNOW_FUNCTION: 
-		ANB_Identifier '(' ( ANB_Identifier | ANB_KNOW_FUNCTION | ANB_KNOW) ')'
+		ANB_Identifier '(' ( ANB_Identifier ( ',' ANB_Identifier )* | ANB_KNOW_FUNCTION ( ',' ANB_KNOW_FUNCTION )* | ANB_KNOW ( ',' ANB_KNOW )* ) ')'
+		;
+		
+ANB_KNOW_CONDITION:
+		ANB_Identifier '!' '=' ANB_Identifier
 		;
 		
 ANB_CHANNEL:
@@ -46,11 +51,12 @@ anb_Type:
 		;
 
 anb_Knowlegde: 
-		'Knowledge' ':' ( anb_know ';' | anb_know )+
+		'Knowledge' ':' anb_know ( ';' anb_know )*
 		;
 		
 anb_know:
 		ANB_Identifier ':' ANB_KNOW
+		| 'where' ANB_KNOW_CONDITION (',' ANB_KNOW_CONDITION)*
 		;
 
 anb_Actions:
