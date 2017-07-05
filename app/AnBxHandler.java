@@ -12,15 +12,15 @@ public class AnBxHandler {
 
 		ANTLRInputStream input = new ANTLRInputStream(everything);
 
-		ANBLexer anblexer = new ANBLexer(input);
+		ANBXLexer anbxlexer = new ANBXLexer(input);
 
-		CommonTokenStream anbtokens = new CommonTokenStream(anblexer);
+		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
-		ANBParser anbparser = new ANBParser(anbtokens);
+		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ParseTree tree = anbparser.anb_Protocol();
+		ParseTree tree = anbxparser.anb_Protocol();
 
-		System.out.println(tree.toStringTree(anbparser));
+		System.out.println(tree.toStringTree(anbxparser));
 	}
 	
 	public String writeFile(String everything) {
@@ -28,23 +28,23 @@ public class AnBxHandler {
 		
 		ANTLRInputStream input = new ANTLRInputStream(everything);
 
-		ANBLexer anblexer = new ANBLexer(input);
+		ANBXLexer anbxlexer = new ANBXLexer(input);
 
-		CommonTokenStream anbtokens = new CommonTokenStream(anblexer);
+		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
-		ANBParser anbparser = new ANBParser(anbtokens);
+		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ParseTree tree = anbparser.anb_Protocol();
+		ParseTree tree = anbxparser.anb_Protocol();
 
 		//System.out.println(tree.toStringTree(anbparser));	
 
-		ParseTreeWalker anbwalker = new ParseTreeWalker();
+		ParseTreeWalker anbxwalker = new ParseTreeWalker();
 		
-		AnBwalker anblistener = new AnBwalker();
+		AnBxwalker anbxlistener = new AnBxwalker();
 				
-		anbwalker.walk(anblistener, tree);
+		anbxwalker.walk(anbxlistener, tree);
 		
-		output = anblistener.newFile;
+		output = anbxlistener.newFile;
 		
 		return output;
 	}
