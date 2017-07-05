@@ -1,50 +1,49 @@
+package handlers;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import parsersLexers.ANBXLexer;
+import parsersLexers.ANBXParser;
+
 public class AnBxHandler {
 	
 	public void analizeFile(String everything){
 
-		ANTLRInputStream input = new ANTLRInputStream(everything);
+		ANBXLexer anbxlexer = new ANBXLexer(CharStreams.fromString(everything));
 
-		ANBLexer anblexer = new ANBLexer(input);
+		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
-		CommonTokenStream anbtokens = new CommonTokenStream(anblexer);
+		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ANBParser anbparser = new ANBParser(anbtokens);
+		ParseTree tree = anbxparser.anb_Protocol();
 
-		ParseTree tree = anbparser.anb_Protocol();
-
-		System.out.println(tree.toStringTree(anbparser));
+		System.out.println(tree.toStringTree(anbxparser));
 	}
 	
 	public String writeFile(String everything) {
 		String output = "";
-		
-		ANTLRInputStream input = new ANTLRInputStream(everything);
 
-		ANBLexer anblexer = new ANBLexer(input);
+		ANBXLexer anbxlexer = new ANBXLexer(CharStreams.fromString(everything));
 
-		CommonTokenStream anbtokens = new CommonTokenStream(anblexer);
+		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
-		ANBParser anbparser = new ANBParser(anbtokens);
+		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ParseTree tree = anbparser.anb_Protocol();
+		ParseTree tree = anbxparser.anb_Protocol();
 
 		//System.out.println(tree.toStringTree(anbparser));	
 
-		ParseTreeWalker anbwalker = new ParseTreeWalker();
+		ParseTreeWalker anbxwalker = new ParseTreeWalker();
 		
-		AnBwalker anblistener = new AnBwalker();
+		AnBxwalker anbxlistener = new AnBxwalker();
 				
-		anbwalker.walk(anblistener, tree);
+		anbxwalker.walk(anbxlistener, tree);
 		
-		output = anblistener.newFile;
+		output = anbxlistener.newFile;
 		
 		return output;
 	}

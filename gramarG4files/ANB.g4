@@ -1,5 +1,9 @@
 grammar ANB;
 
+@header {
+    package parsersLexers;
+}
+
 ANB_Identifier :
 		('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
 		;
@@ -42,7 +46,7 @@ anb_ProtocolName:
 		;
 	
 anb_Types: 
-		'Types' ':' ( anb_Type ';'| anb_Type )+
+		'Types' ':' anb_Type ( ';' anb_Type)*
 		;
 
 anb_Type:
@@ -51,7 +55,7 @@ anb_Type:
 		;
 
 anb_Knowlegde: 
-		'Knowledge' ':' anb_know ( ';' anb_know )*
+		'Knowledge' ':' anb_know ( ';'* anb_know )*
 		;
 		
 anb_know:
@@ -72,7 +76,8 @@ anb_SubAction:
 		|ANB_KNOW
 		|'{' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '}' ( ANB_KNOW | ANB_Identifier )
 		|'{' '|' ( ( ANB_KNOW | anb_SubAction ) | (',' anb_SubAction )* ) '|' '}' ( ANB_KNOW | ANB_Identifier )
-		| anb_SubAction (',' anb_SubAction)+
+		|anb_SubAction '(' anb_SubAction ')'
+		|anb_SubAction (',' anb_SubAction)+
 		;
 
 anb_Goals: 
