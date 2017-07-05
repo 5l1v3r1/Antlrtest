@@ -1,6 +1,7 @@
-// Generated from ANB.g4 by ANTLR 4.7
+// Generated from ANB.g4 by ANTLR 4.4
 
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -15,156 +16,156 @@ public class ANBBaseListener implements ANBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
+	@Override public void enterAnb_Knowlegde(@NotNull ANBParser.Anb_KnowlegdeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Protocol(ANBParser.Anb_ProtocolContext ctx) { }
+	@Override public void exitAnb_Knowlegde(@NotNull ANBParser.Anb_KnowlegdeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
+	@Override public void enterAnb_know(@NotNull ANBParser.Anb_knowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) { }
+	@Override public void exitAnb_know(@NotNull ANBParser.Anb_knowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Types(ANBParser.Anb_TypesContext ctx) { }
+	@Override public void enterAnb_Actions(@NotNull ANBParser.Anb_ActionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Types(ANBParser.Anb_TypesContext ctx) { }
+	@Override public void exitAnb_Actions(@NotNull ANBParser.Anb_ActionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Type(ANBParser.Anb_TypeContext ctx) { }
+	@Override public void enterAnb_Action(@NotNull ANBParser.Anb_ActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Type(ANBParser.Anb_TypeContext ctx) { }
+	@Override public void exitAnb_Action(@NotNull ANBParser.Anb_ActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Knowlegde(ANBParser.Anb_KnowlegdeContext ctx) { }
+	@Override public void enterAnb_SubAction(@NotNull ANBParser.Anb_SubActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Knowlegde(ANBParser.Anb_KnowlegdeContext ctx) { }
+	@Override public void exitAnb_SubAction(@NotNull ANBParser.Anb_SubActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_know(ANBParser.Anb_knowContext ctx) { }
+	@Override public void enterAnb_ProtocolName(@NotNull ANBParser.Anb_ProtocolNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_know(ANBParser.Anb_knowContext ctx) { }
+	@Override public void exitAnb_ProtocolName(@NotNull ANBParser.Anb_ProtocolNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Actions(ANBParser.Anb_ActionsContext ctx) { }
+	@Override public void enterAnb_Protocol(@NotNull ANBParser.Anb_ProtocolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Actions(ANBParser.Anb_ActionsContext ctx) { }
+	@Override public void exitAnb_Protocol(@NotNull ANBParser.Anb_ProtocolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Action(ANBParser.Anb_ActionContext ctx) { }
+	@Override public void enterAnb_Types(@NotNull ANBParser.Anb_TypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Action(ANBParser.Anb_ActionContext ctx) { }
+	@Override public void exitAnb_Types(@NotNull ANBParser.Anb_TypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_SubAction(ANBParser.Anb_SubActionContext ctx) { }
+	@Override public void enterAnb_Type(@NotNull ANBParser.Anb_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_SubAction(ANBParser.Anb_SubActionContext ctx) { }
+	@Override public void exitAnb_Type(@NotNull ANBParser.Anb_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Goals(ANBParser.Anb_GoalsContext ctx) { }
+	@Override public void enterAnb_Goal(@NotNull ANBParser.Anb_GoalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Goals(ANBParser.Anb_GoalsContext ctx) { }
+	@Override public void exitAnb_Goal(@NotNull ANBParser.Anb_GoalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnb_Goal(ANBParser.Anb_GoalContext ctx) { }
+	@Override public void enterAnb_Goals(@NotNull ANBParser.Anb_GoalsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnb_Goal(ANBParser.Anb_GoalContext ctx) { }
+	@Override public void exitAnb_Goals(@NotNull ANBParser.Anb_GoalsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(TerminalNode node) { }
+	@Override public void visitTerminal(@NotNull TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(ErrorNode node) { }
+	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
 }

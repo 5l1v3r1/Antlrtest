@@ -1,5 +1,4 @@
-
-import java.io.FileReader;
+package ui;
 
 public class main {
 

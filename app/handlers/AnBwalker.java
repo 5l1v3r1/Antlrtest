@@ -1,11 +1,16 @@
+package handlers;
 
-public class AnBxwalker extends ANBBaseListener {
+import parsersLexers.ANBBaseListener;
+import parsersLexers.ANBParser;
+
+public class AnBwalker extends ANBBaseListener {
+	
 	public String newFile = "";
-
-	public AnBxwalker(){
+	
+	public AnBwalker(){
 		String newFile = "";
 	}
-	
+
 	@Override
 	public void enterAnb_ProtocolName(ANBParser.Anb_ProtocolNameContext ctx) {
 		newFile += "Protocol Name:\n"+ctx.ANB_Identifier().getText()+"\n";
@@ -68,5 +73,4 @@ public class AnBxwalker extends ANBBaseListener {
 			newFile += "\n";
 		}
 	}
-
 }

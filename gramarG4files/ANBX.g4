@@ -1,5 +1,10 @@
 grammar ANBX;
 
+@header {
+    package parsersLexers;
+}
+
+
 ANB_Identifier :
 		('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
 		;

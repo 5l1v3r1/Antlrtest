@@ -1,18 +1,19 @@
+package handlers;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import parsersLexers.ANBXLexer;
+import parsersLexers.ANBXParser;
+
 public class AnBxHandler {
 	
 	public void analizeFile(String everything){
 
-		ANTLRInputStream input = new ANTLRInputStream(everything);
-
-		ANBXLexer anbxlexer = new ANBXLexer(input);
+		ANBXLexer anbxlexer = new ANBXLexer(CharStreams.fromString(everything));
 
 		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
@@ -25,10 +26,8 @@ public class AnBxHandler {
 	
 	public String writeFile(String everything) {
 		String output = "";
-		
-		ANTLRInputStream input = new ANTLRInputStream(everything);
 
-		ANBXLexer anbxlexer = new ANBXLexer(input);
+		ANBXLexer anbxlexer = new ANBXLexer(CharStreams.fromString(everything));
 
 		CommonTokenStream anbxtokens = new CommonTokenStream(anbxlexer);
 
