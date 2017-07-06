@@ -19,7 +19,7 @@ public class AnBxHandler {
 
 		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ParseTree tree = anbxparser.anb_Protocol();
+		ParseTree tree = anbxparser.anbx_Protocol();
 
 		System.out.println(tree.toStringTree(anbxparser));
 	}
@@ -33,7 +33,7 @@ public class AnBxHandler {
 
 		ANBXParser anbxparser = new ANBXParser(anbxtokens);
 
-		ParseTree tree = anbxparser.anb_Protocol();
+		ParseTree tree = anbxparser.anbx_Protocol();
 
 		//System.out.println(tree.toStringTree(anbparser));	
 

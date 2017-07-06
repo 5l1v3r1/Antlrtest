@@ -5,11 +5,11 @@ grammar ANBX;
 }
 
 
-ANB_Identifier :
+ANBX_Identifier :
 		('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
 		;
 		
-ANB_COMMENT: 
+ANBX_COMMENT: 
 		'#' ~[\r\n]* -> channel(HIDDEN)
    		;
    		
@@ -17,113 +17,118 @@ WS:
 		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
     	;
     	
-ANB_DELIMITER:
+ANBX_DELIMITER:
 		';'
 		|','
 		|':'
 		;
-
-ANB_KNOW:
-		 ANB_Identifier
-		|ANB_Identifier ( ANB_DELIMITER ( ANB_Identifier | ANB_KNOW_FUNCTION )  )*
-		|ANB_KNOW_FUNCTION
+		
+ANBX_KNOW_RESERVEDWORDS:
+		'share'
+		|'agree'	
 		;
 
-ANB_KNOW_FUNCTION: 
-		ANB_Identifier '(' ( ANB_Identifier ( ANB_DELIMITER ANB_Identifier )* | ANB_KNOW_FUNCTION ( ANB_DELIMITER ANB_KNOW_FUNCTION )* | ANB_KNOW ( ANB_DELIMITER ANB_KNOW )* ) ')'
-		|'(' ( ANB_Identifier ( ANB_DELIMITER ANB_Identifier )* | ANB_KNOW_FUNCTION ( ANB_DELIMITER ANB_KNOW_FUNCTION )* | ANB_KNOW ( ANB_DELIMITER ANB_KNOW )* ) ')'
+ANBX_KNOW:
+		 ANBX_Identifier
+		|ANBX_Identifier ( ANBX_DELIMITER ( ANBX_Identifier | ANBX_KNOW_FUNCTION )  )*
+		|ANBX_KNOW_FUNCTION
+		;
+
+ANBX_KNOW_FUNCTION: 
+		ANBX_Identifier '(' ( ANBX_Identifier ( ANBX_DELIMITER ANBX_Identifier )* | ANBX_KNOW_FUNCTION ( ANBX_DELIMITER ANBX_KNOW_FUNCTION )* | ANBX_KNOW ( ANBX_DELIMITER ANBX_KNOW )* ) ')'
+		|'(' ( ANBX_Identifier ( ANBX_DELIMITER ANBX_Identifier )* | ANBX_KNOW_FUNCTION ( ANBX_DELIMITER ANBX_KNOW_FUNCTION )* | ANBX_KNOW ( ANBX_DELIMITER ANBX_KNOW )* ) ')'
 		;
 		
-ANB_KNOW_CONDITION:
-		ANB_Identifier '!' '=' ANB_Identifier
+ANBX_KNOW_CONDITION:
+		ANBX_Identifier '!' '=' ANBX_Identifier
 		;
 		
-ANB_CHANNEL:
+ANBX_CHANNEL:
 		'->'
 		|'*->*'
 		|'*->'
 		|'->*'
 		;
 		
-ANB_OPERATION:
+ANBX_OPERATION:
 		'^'
 		|'@'
 		;		
 
-anb_Protocol:
-		anb_ProtocolName anb_Types anb_Definitions* anb_Knowlegde anb_Actions anb_Goals EOF
+anbx_Protocol:
+		anbx_ProtocolName anbx_Types anbx_Definitions* anbx_Knowlegde anbx_Actions anbx_Goals EOF
 		;
 		
-anb_ProtocolName: 
-		'Protocol' ':' ANB_Identifier+
+anbx_ProtocolName: 
+		'Protocol' ANBX_DELIMITER ANBX_Identifier+
 		;
 	
-anb_Types: 
-		'Types' ':' anb_Type ( ';' anb_Type)*
+anbx_Types: 
+		'Types' ANBX_DELIMITER anbx_Type ( ';' anbx_Type)*
 		;
 
-anb_Type:
-		ANB_Identifier ANB_KNOW
-		|ANB_Identifier ANB_Identifier
-		|ANB_Identifier '[' ( ANB_KNOW | ANB_Identifier ) ANB_CHANNEL ( ANB_KNOW | ANB_Identifier ) ']' ( ANB_KNOW | ANB_Identifier )
+anbx_Type:
+		ANBX_Identifier ANBX_KNOW
+		|ANBX_Identifier ANBX_Identifier
+		|ANBX_Identifier '[' ( ANBX_KNOW | ANBX_Identifier ) ANBX_CHANNEL ( ANBX_KNOW | ANBX_Identifier ) ']' ( ANBX_KNOW | ANBX_Identifier )
 		;
 		
-anb_Definitions:
-		'Definitions' ':' anb_Definition ( ';' anb_Definition)*
+anbx_Definitions:
+		'Definitions' ANBX_DELIMITER anbx_Definition ( ';' anbx_Definition)*
 		;
 		
-anb_Definition:
-		ANB_Identifier ':' anb_SubDefinition+
+anbx_Definition:
+		ANBX_Identifier ANBX_DELIMITER anbx_SubDefinition+
 		;
 		
-anb_SubDefinition:
-		ANB_Identifier
-		|ANB_KNOW
-		|'[' ( ANB_Identifier | ANB_KNOW | anb_SubDefinition ) ']'
-		|'[' ANB_Identifier ':' ANB_Identifier ']'
-		|'{' ( ( ANB_Identifier | ANB_KNOW | anb_SubDefinition ) | (ANB_DELIMITER ANB_Identifier | ANB_KNOW | anb_SubDefinition )* ) '}' ( ANB_KNOW | ANB_Identifier )
-		|'{' '|' ( ( ANB_KNOW | anb_SubDefinition ) | (ANB_DELIMITER anb_SubDefinition )* ) '|' '}' ( ANB_KNOW | ANB_Identifier )
-		| anb_SubDefinition (ANB_DELIMITER anb_SubDefinition)+
+anbx_SubDefinition:
+		ANBX_Identifier
+		|ANBX_KNOW
+		|'[' ( ANBX_Identifier | ANBX_KNOW | anbx_SubDefinition ) ']'
+		|'[' ANBX_Identifier ANBX_DELIMITER ANBX_Identifier ']'
+		|'{' ( ( ANBX_Identifier | ANBX_KNOW | anbx_SubDefinition ) | (ANBX_DELIMITER ANBX_Identifier | ANBX_KNOW | anbx_SubDefinition )* ) '}' ( ANBX_KNOW | ANBX_Identifier )
+		|'{' '|' ( ( ANBX_KNOW | anbx_SubDefinition ) | (ANBX_DELIMITER anbx_SubDefinition )* ) '|' '}' ( ANBX_KNOW | ANBX_Identifier )
+		| anbx_SubDefinition (ANBX_DELIMITER anbx_SubDefinition)+
 		;
 
-anb_Knowlegde: 
-		'Knowledge' ':' anb_know ( ';'* anb_know )*
+anbx_Knowlegde: 
+		'Knowledge' ANBX_DELIMITER anbx_Know ( ';'* anbx_Know )*
 		;
 		
-anb_know:
-		ANB_Identifier ':' ANB_KNOW
-		| 'where' ANB_KNOW_CONDITION (ANB_DELIMITER ANB_KNOW_CONDITION)*
-		| ( ANB_KNOW | ANB_Identifier )  'share' ( ANB_KNOW | ANB_Identifier ) 
-		| ( ANB_KNOW | ANB_Identifier )  'agree' ( ANB_KNOW | ANB_Identifier ) 
+anbx_Know:
+		ANBX_Identifier ANBX_DELIMITER ANBX_KNOW
+		| 'where' ANBX_KNOW_CONDITION (ANBX_DELIMITER ANBX_KNOW_CONDITION)*
+		| ( ANBX_KNOW | ANBX_Identifier )  'share' ( ANBX_KNOW | ANBX_Identifier ) 
+		| ( ANBX_KNOW | ANBX_Identifier )  'agree' ( ANBX_KNOW | ANBX_Identifier ) 
 		;
 
-anb_Actions:
-		'Actions' ':' anb_Action+
+anbx_Actions:
+		'Actions' ANBX_DELIMITER anbx_Action+
 		;
 		
-anb_Action:
-		ANB_Identifier ANB_CHANNEL ANB_Identifier ':' anb_SubAction+
-		|ANB_Identifier ANB_CHANNEL ANB_Identifier ANB_DELIMITER  ANB_OPERATION*  '(' (ANB_KNOW | ANB_Identifier | '-') '|' ( ANB_KNOW | ANB_Identifier | '-' ) '|' ( ANB_KNOW | ANB_Identifier | '-' ) ')'   ':' anb_SubAction+
+anbx_Action:
+		ANBX_Identifier ANBX_CHANNEL ANBX_Identifier ANBX_DELIMITER anbx_SubAction+
+		|ANBX_Identifier ANBX_CHANNEL ANBX_Identifier ANBX_DELIMITER  ANBX_OPERATION*  '(' (ANBX_KNOW | ANBX_Identifier | '-') '|' ( ANBX_KNOW | ANBX_Identifier | '-' ) '|' ( ANBX_KNOW | ANBX_Identifier | '-' ) ')'   ANBX_DELIMITER anbx_SubAction+
 		;
 		
-anb_SubAction:
-		ANB_Identifier
-		|ANB_KNOW
-		|'[' ( ANB_KNOW | anb_SubAction ) ']'
-		|'{' ( ( ANB_KNOW | anb_SubAction ) | (ANB_DELIMITER anb_SubAction )* ) '}' ( ANB_KNOW | ANB_Identifier )
-		|'{' '|' ( ( ANB_KNOW | anb_SubAction ) | (ANB_DELIMITER anb_SubAction )* ) '|' '}' ( ANB_KNOW | ANB_Identifier )
-		|anb_SubAction '(' anb_SubAction ')'
-		| anb_SubAction (ANB_DELIMITER anb_SubAction)+
+anbx_SubAction:
+		ANBX_Identifier
+		|ANBX_KNOW
+		|'[' ( ANBX_KNOW | anbx_SubAction ) ']'
+		|'{' ( ( ANBX_KNOW | anbx_SubAction ) | (ANBX_DELIMITER anbx_SubAction )* ) '}' ( ANBX_KNOW | ANBX_Identifier )
+		|'{' '|' ( ( ANBX_KNOW | anbx_SubAction ) | (ANBX_DELIMITER anbx_SubAction )* ) '|' '}' ( ANBX_KNOW | ANBX_Identifier )
+		|anbx_SubAction '(' anbx_SubAction ')'
+		| anbx_SubAction (ANBX_DELIMITER anbx_SubAction)+
 		;
 
-anb_Goals: 
-		'Goals' ':' anb_Goal+
+anbx_Goals: 
+		'Goals' ANBX_DELIMITER anbx_Goal+
 		;
 		
-anb_Goal:
-		(ANB_KNOW | ANB_Identifier) 'weakly' 'authenticates' (ANB_KNOW | ANB_Identifier) 'on' (ANB_KNOW | ANB_Identifier)
-		|(ANB_KNOW | ANB_Identifier) 'authenticates' (ANB_KNOW | ANB_Identifier) 'on' (ANB_KNOW | ANB_Identifier)
-		|(ANB_KNOW | ANB_Identifier) 'secret' 'between' (ANB_KNOW | ANB_Identifier)
-		|(ANB_KNOW | ANB_Identifier) 'secret' 'of' (ANB_KNOW | ANB_Identifier)
-		| ANB_Identifier ANB_CHANNEL ANB_Identifier ':' ANB_Identifier
+anbx_Goal:
+		(ANBX_KNOW | ANBX_Identifier) 'weakly' 'authenticates' (ANBX_KNOW | ANBX_Identifier) 'on' (ANBX_KNOW | ANBX_Identifier)
+		|(ANBX_KNOW | ANBX_Identifier) 'authenticates' (ANBX_KNOW | ANBX_Identifier) 'on' (ANBX_KNOW | ANBX_Identifier)
+		|(ANBX_KNOW | ANBX_Identifier) 'secret' 'between' (ANBX_KNOW | ANBX_Identifier)
+		|(ANBX_KNOW | ANBX_Identifier) 'secret' 'of' (ANBX_KNOW | ANBX_Identifier)
+		| ANBX_Identifier ANBX_CHANNEL ANBX_Identifier ANBX_DELIMITER ANBX_Identifier
 		;
