@@ -1,0 +1,6 @@
+title(title) ::= "<title>:<\n>"
+protocolname(name) ::= "<name><\n>"
+types(type) ::= "<type><\n>"
+knowlegde(knowledge) ::= "<knowledge><\n>"
+actions(action) ::= "<action><\n>"
+goals(goal) ::= "<goal><\n>"
