@@ -12,14 +12,15 @@ public class HelloRunner
     	public static void main( String[] args) throws Exception 
     	{
     		String filepath = "EPMO";
-    		AnBHandler anbHandlerObject = new AnBHandler();
-			filepath = anbHandlerObject.writeFile(anbHandlerObject.openFile("./study_cases/"+filepath+".AnB"));
-			System.out.println(filepath);
+//    		AnBHandler anbHandlerObject = new AnBHandler();
+//			filepath = anbHandlerObject.writeFile(anbHandlerObject.openFile("./study_cases/"+filepath+".AnB"));
+//			System.out.println(filepath);
 //    		anbHandlerObject.analizeFile(anbHandlerObject.openFile("./study_cases/"+filepath+".AnB"));
 			
-//			AnBxHandler anbxHandlerObject = new AnBxHandler();
+			AnBxHandler anbxHandlerObject = new AnBxHandler();
 //			filepath = anbxHandlerObject.writeFile(anbxHandlerObject.openFile("./study_cases/"+filepath+".AnBx"));
-//			System.out.println(filepath);
+			filepath = anbxHandlerObject.writeFile(anbxHandlerObject.openFile("./study_cases/"+filepath+".AnB"));
+			System.out.println(filepath);
 //			anbxHandlerObject.analizeFile(anbxHandlerObject.openFile("./study_cases/"+filepath+".AnBx"));   		
 			
 //    		STGroup groupStringTemplate = new STGroupDir("./stringTemplates");

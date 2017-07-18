@@ -1,6 +1,71 @@
 title(title) ::= "<title>:<\n>"
-protocolname(name) ::= "<name><\n>"
-types(type) ::= "<type><\n>"
-knowlegde(knowledge) ::= "<knowledge><\n>"
-actions(action) ::= "<action><\n>"
+
+protocolname(name) ::= <<# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol <name>
+
+imports
+  <name>Lib
+
+##----------------------------------------------------------------------------------------<\n><\n>
+>>
+
+types(type) ::= <<
+Types
+
+	record
+
+<type><\n>
+>>
+
+knowlegde(knowledge) ::= <<
+<knowledge><\n>
+>>
+
+
+titleactions(title) ::= <<
+ actions
+## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
+## and enough for EMV. But in general, we would want a new/fetch mechanisms to
+## actual values for agent variables, like in ProVerif.
+
+#actionN(?)
+#pre kps_Expr(msg, tpm?, knowledge$(source$))
+#post update_knowledge$(target$, response$) <\n><\n>
+>>
+
+
+actions(action,number,numberplusone) ::= <<
+
+
+##########################################################################################
+#
+#  A<number>. <action>
+#
+##########################################################################################
+
+action<number>(void)
+pre source$ = <action.sender> and target$ = <action.reciver>
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action<number>resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action<numberplusone>, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+<\n>
+>>
+
 goals(goal) ::= "<goal><\n>"

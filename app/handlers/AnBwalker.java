@@ -2,12 +2,10 @@ package handlers;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupDir;
 import org.stringtemplate.v4.STGroupFile;
 
 import anbClasses.ActionAnB;
 import anbClasses.ActionsAnB;
-import anbClasses.GoalAnB;
 import anbClasses.GoalsAnB;
 import anbClasses.KnowledgeAnB;
 import anbClasses.TypesANB;
@@ -109,7 +107,6 @@ public class AnBwalker extends ANBBaseListener {
 			for (int j = 0; j < ctx.anb_Goal(i).getChildCount(); j++) {
 				goalsChilds += ctx.anb_Goal(i).getChild(j).getText() + " ";
 			}
-			GoalsAnB goalline = new GoalsAnB(goalsChilds);
 			st.add("goal", new GoalsAnB(goalsChilds));
 			newFile += st.render();
 		}
