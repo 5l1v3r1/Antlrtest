@@ -133,11 +133,12 @@ public class AnBxwalker extends ANBXBaseListener {
 		st.add("title", "title");
 		newFile += st.render();
 
-//		System.out.println(ctx.anbx_Action().size());
-//		System.out.println(ctx.anbx_Action(4).ANBX_DELIMITER().size());
+		// System.out.println(ctx.anbx_Action().size());
+		// System.out.println(ctx.anbx_Action(4).ANBX_DELIMITER().size());
 
 		for (int i = 0; i < ctx.anbx_Action().size(); i++) {
 			if (ctx.anbx_Action(i).ANBX_DELIMITER().size() > 1) {
+
 			} else {
 				ActionsAnB actionline = new ActionsAnB(ctx.anbx_Action(i).ANBX_Identifier(0).getText(),
 						ctx.anbx_Action(i).ANBX_CHANNEL().getText(), ctx.anbx_Action(i).ANBX_Identifier(1).getText());
@@ -161,8 +162,8 @@ public class AnBxwalker extends ANBXBaseListener {
 				}
 				st = groupStringTemplate.getInstanceOf("actions");
 				st.add("action", actionline);
-				st.add("number", i+1);
-				st.add("numberplusone", i+2);
+				st.add("number", i + 1);
+				st.add("lastaction", (i == ctx.anbx_Action().size()-1 ? false : i + 2 ));
 				newFile += st.render();
 			}
 		}

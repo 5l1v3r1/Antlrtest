@@ -8,8 +8,8 @@ Protocol: ISOCCFOnePassUnilateralAuthProt # Verified
 Types: 
 	Agent A,B;
     Number NxA,NxB,Text1,Text2;
-    Function [SymmetricKey, Number, Agent, Number -> Number] f;
-	Function [Agent, Agent -> SymmetricKey] shk
+    Function [SymmetricKey,Number,Agent,Number -> Number] f;
+	Function [Agent,Agent -> SymmetricKey] shk
 	
 Knowledge: 
 	A: A,B,f;

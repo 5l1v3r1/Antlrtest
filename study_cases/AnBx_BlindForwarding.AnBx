@@ -4,7 +4,7 @@ Types:
 	Agent C,M,A;
 	Number Price;
 	Certified C,M,A;
-	Function [Agent, Agent -> Number] ccn
+	Function [Agent,Agent -> Number] ccn
 	
 Knowledge: 
 	C: C,M,A;
