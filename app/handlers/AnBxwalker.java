@@ -8,8 +8,8 @@ import anbClasses.ActionAnB;
 import anbClasses.ActionsAnB;
 import anbClasses.KnowledgeAnB;
 import anbClasses.TypesANB;
-import parsersLexers.ANBXBaseListener;
-import parsersLexers.ANBXParser;
+import baseClasses.ANBXBaseListener;
+import baseClasses.ANBXParser;
 
 public class AnBxwalker extends ANBXBaseListener {
 	public String newFile = "";
