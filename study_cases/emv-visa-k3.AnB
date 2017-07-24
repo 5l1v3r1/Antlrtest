@@ -1,0 +1,38 @@
+Protocol: emv_visa_k3
+
+Types:
+	Agent C,T,iss;
+	Number commandListApps;
+	Number respVisa;
+	Number respMasterCard,respAmex,respUnionPay,respDiscover,respJCB;
+	Number PDOLDate,PDOLAmount,PDOLTVR,PDOLCountry,PDOLCurrency,PDOLTTQ;
+	Function fcnSelect;
+	Function fcnPDOL;
+	Function fcnCVM;
+	Function fcnUsage;
+	Function fcnUnpred;
+	Function fcnSeqNo;
+	Function fcnAgree;
+	Function sk;
+	Function shk
+
+Knowledge:
+	C: C,iss,sk,shk,inv(sk(C)),respVisa,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred,fcnSeqNo,shk(C,iss);
+	T: T,sk,commandListApps,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred;
+	iss: iss,C,shk,sk,shk(C,iss)
+
+Actions:
+	T -> C: commandListApps
+	C -> T: C,respVisa
+	T -> C: fcnSelect(C,respVisa)
+	C -> T: fcnPDOL(C,respVisa),fcnCVM(C,respVisa)
+	T -> C: PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))
+	C -> T: fcnAgree(fcnCVM(C,respVisa),fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))),{PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa),fcnUnpred(C,fcnSeqNo(C,respVisa))}inv(sk(C)),{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss)
+	T -> iss: PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss),C
+
+Goals:
+	# 	T weakly authenticates C on SDADPayload
+	T weakly authenticates C on PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa),fcnUnpred(C,fcnSeqNo(C,respVisa))
+	# 	iss weakly authenticates C on ACPayload
+	iss weakly authenticates C on PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)
+	inv(sk(C)) secret between C

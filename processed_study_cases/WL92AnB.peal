@@ -1,0 +1,238 @@
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol WL92
+
+imports
+  WL92Lib
+
+##----------------------------------------------------------------------------------------
+
+Types Section:
+Agent : B,A,s
+Number : NxNA,NxNB
+Symmetric_key : KxKS
+Function : pk,sk
+knowledge:
+A : A,pk(A),inv(pk(A)),s,sk(s),B
+B : A,B,pk(B),inv(pk(B)),s,sk(s),pk(s)
+s : s,A,B,pk(A),pk(B),pk(s),inv(pk(s)),sk(s),inv(sk(s))
+where : B!=s,A!=B
+
+actions
+## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
+## and enough for EMV. But in general, we would want a new/fetch mechanisms to
+## actual values for agent variables, like in ProVerif.
+
+#actionN(?)
+#pre kps_Expr(msg, tpm?, knowledge$(source$))
+#post update_knowledge$(target$, response$) 
+
+
+##########################################################################################
+#
+#  A1. A -> s : A,B
+#
+##########################################################################################
+
+action1(void)
+pre source$ = A and target$ = s
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action1resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action2, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A2. s -> A : {B,pk(B)}inv(sk(s))
+#
+##########################################################################################
+
+action2(void)
+pre source$ = s and target$ = A
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action2resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action3, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A3. A -> B : {NxNA,A}pk(B)
+#
+##########################################################################################
+
+action3(void)
+pre source$ = A and target$ = B
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action3resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action4, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A4. B -> s : A,B,{NxNA}pk(s)
+#
+##########################################################################################
+
+action4(void)
+pre source$ = B and target$ = s
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action4resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action5, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A5. s -> B : {A,pk(A)}inv(sk(s)),{{NxNA,KxKS,B,A}inv(sk(s))}pk(B)
+#
+##########################################################################################
+
+action5(void)
+pre source$ = s and target$ = B
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action5resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action6, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A6. B -> A : {{NxNA,KxKS,B,A}inv(sk(s)),NxNB}pk(A)
+#
+##########################################################################################
+
+action6(void)
+pre source$ = B and target$ = A
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action6resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action7, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A7. A -> B : {|NxNB|}KxKS
+#
+##########################################################################################
+
+action7(void)
+pre source$ = A and target$ = B
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action7resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action7, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+

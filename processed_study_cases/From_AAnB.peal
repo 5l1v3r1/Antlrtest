@@ -1,49 +1,40 @@
-title(title) ::= "<title>:<\n>"
-
-protocolname(name) ::= <<# Predicting problems in higher levels of abstraction before committing to implementing them
-protocol <name>
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol From_A
 
 imports
-  <name>Lib
+  From_ALib
 
-##----------------------------------------------------------------------------------------<\n><\n>
->>
+##----------------------------------------------------------------------------------------
 
-types(type) ::= <<
-<type><\n>
->>
+Types Section:
+Agent : B,A
+Number : Msg
+Function : sk
+knowledge:
+A : A,B,sk,inv(sk(A))
+B : A,B,sk
 
-knowlegde(knowledge) ::= <<
-<knowledge><\n>
->>
-
-
-titleactions(title) ::= <<
-<\n>actions
+actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
 ## and enough for EMV. But in general, we would want a new/fetch mechanisms to
 ## actual values for agent variables, like in ProVerif.
 
 #actionN(?)
 #pre kps_Expr(msg, tpm?, knowledge$(source$))
-#post update_knowledge$(target$, response$) <\n><\n>
->>
-
-
-actions(action,number,lastaction) ::= <<
+#post update_knowledge$(target$, response$) 
 
 
 ##########################################################################################
 #
-#  A<number>. <action>
+#  A1. A -> B : {B,Msg}inv(sk(A))
 #
 ##########################################################################################
 
-action<number>(void)
-pre source$ = <action.sender> and target$ = <action.reciver>
+action1(void)
+pre source$ = A and target$ = B
 {
   # Number is >= 0, Xbits in configuration
-  var response$: action<number>resp;
+  var response$: action1resp;
 
   ##################################################################
   # BEGIN
@@ -57,11 +48,8 @@ pre source$ = <action.sender> and target$ = <action.reciver>
   # END
   ##################################################################
 
-  transmit(target$, <if(lastaction)>action<lastaction><else>action<number><endif>, response$);               ## always next action for AnB protocols only
+  transmit(target$, action1, response$);               ## always next action for AnB protocols only
 
   ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
 }
-<\n>
->>
 
-goals(goal) ::= "<goal><\n>"

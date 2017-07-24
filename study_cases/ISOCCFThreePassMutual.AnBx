@@ -4,7 +4,7 @@ Types:
 	Agent A,B;
     Number NxA,NxB,Text1,Text2,Text3,Text4,Text5;
     Function f;
-	Function [Agent, Agent -> SymmetricKey] shk
+	Function [Agent,Agent -> SymmetricKey] shk
 
 Knowledge: 
 	A: A,B,f;

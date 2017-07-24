@@ -1,6 +1,7 @@
 package handlers;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.antlr.v4.runtime.*;
@@ -67,5 +68,22 @@ public class AnBxHandler {
 		}
 		
 		return everything;
+	}
+	
+	public boolean saveFile(String path, String content){
+		String filepath = path+".peal";
+		String filecontent = content;
+		
+		FileWriter save;
+		try {
+			save = new FileWriter(filepath);
+			save.write(filecontent);
+			save.close();
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

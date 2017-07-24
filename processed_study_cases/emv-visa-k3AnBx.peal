@@ -1,0 +1,247 @@
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol emv_visa_k3
+
+imports
+  emv_visa_k3Lib
+
+##----------------------------------------------------------------------------------------
+
+Types Section:
+Agent : T,iss,C
+Number : commandListApps
+Number : respVisa
+Number : respDiscover,respUnionPay,respAmex,respJCB,respMasterCard
+Number : PDOLAmount,PDOLDate,PDOLTVR,PDOLCountry,PDOLTTQ,PDOLCurrency
+Function : fcnSelect
+Function : fcnPDOL
+Function : fcnCVM
+Function : fcnUsage
+Function : fcnUnpred
+Function : fcnSeqNo
+Function : fcnAgree
+Function : sk
+Function : shk
+knowledge:
+C : C,iss,sk,shk,inv(sk(C)),respVisa,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred,fcnSeqNo,shk(C,iss)
+T : T,sk,commandListApps,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred
+iss : iss,C,shk,sk,shk(C,iss)
+
+actions
+## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
+## and enough for EMV. But in general, we would want a new/fetch mechanisms to
+## actual values for agent variables, like in ProVerif.
+
+#actionN(?)
+#pre kps_Expr(msg, tpm?, knowledge$(source$))
+#post update_knowledge$(target$, response$) 
+
+
+##########################################################################################
+#
+#  A1. T -> C : commandListApps
+#
+##########################################################################################
+
+action1(void)
+pre source$ = T and target$ = C
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action1resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action2, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A2. C -> T : C,respVisa
+#
+##########################################################################################
+
+action2(void)
+pre source$ = C and target$ = T
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action2resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action3, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A3. T -> C : fcnSelect(C,respVisa)
+#
+##########################################################################################
+
+action3(void)
+pre source$ = T and target$ = C
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action3resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action4, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A4. C -> T : fcnPDOL(C,respVisa),fcnCVM(C,respVisa)
+#
+##########################################################################################
+
+action4(void)
+pre source$ = C and target$ = T
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action4resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action5, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A5. T -> C : PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))
+#
+##########################################################################################
+
+action5(void)
+pre source$ = T and target$ = C
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action5resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action6, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A6. C -> T : fcnAgree(fcnCVM(C,respVisa),fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))),{PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa),fcnUnpred(C,fcnSeqNo(C,respVisa))}inv(sk(C)),{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss)
+#
+##########################################################################################
+
+action6(void)
+pre source$ = C and target$ = T
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action6resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action7, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+
+
+##########################################################################################
+#
+#  A7. T -> iss : PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss),C
+#
+##########################################################################################
+
+action7(void)
+pre source$ = T and target$ = iss
+{
+  # Number is >= 0, Xbits in configuration
+  var response$: action7resp;
+
+  ##################################################################
+  # BEGIN
+  #
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
+  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
+  ##
+  ## = initialisation code to connect to the CardReaader
+  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #
+  # END
+  ##################################################################
+
+  transmit(target$, action7, response$);               ## always next action for AnB protocols only
+
+  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
+}
+

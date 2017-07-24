@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import handlers.AnBHandler;
 import handlers.AnBxHandler;
 
 public class mainWindow extends JFrame {
@@ -101,7 +100,7 @@ public class mainWindow extends JFrame {
 					System.out.println("Analizing the file");
 					try {
 						if (fileExtencion.equalsIgnoreCase("anb")) {
-							AnBHandler anbHandlerObject = new AnBHandler();
+							AnBxHandler anbHandlerObject = new AnBxHandler();
 							String file = anbHandlerObject.openFile(openPath.getText().toString());
 							anbHandlerObject.analizeFile(file);
 						} else {
@@ -132,7 +131,7 @@ public class mainWindow extends JFrame {
 
 						try {
 							if (fileExtencion.equalsIgnoreCase("anb")) {
-								AnBHandler anbHandlerObject = new AnBHandler();
+								AnBxHandler anbHandlerObject = new AnBxHandler();
 								String file = anbHandlerObject.openFile(openPath.getText().toString());
 								filecontent = anbHandlerObject.writeFile(file);
 								FileWriter save = new FileWriter(filepath);
