@@ -36,8 +36,6 @@ public class AnBxHandler {
 
 		ParseTree tree = anbxparser.anbx_Protocol();
 
-		//System.out.println(tree.toStringTree(anbparser));	
-
 		ParseTreeWalker anbxwalker = new ParseTreeWalker();
 		
 		AnBxwalker anbxlistener = new AnBxwalker();

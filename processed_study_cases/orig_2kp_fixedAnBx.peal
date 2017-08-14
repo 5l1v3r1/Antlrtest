@@ -7,16 +7,28 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,M,a
-Number : Desc,ID,NxNONCE,Price,NxVC,NxV,empty
+Agent : M,C,a
+Certified : M,a
+Number : Desc,NxVC,ID,Price,NxV,NxNONCE
 SeqNumber : TID,Auth
-Symmetric_key : HxRC,HxSALTC
-Function : can
-Function : sk,hmac,pk,hash
+Symmetric_key : HxSALTC,HxRC
+Function : [Agent,Agent->Number]can
+Definitions:
+IDC
+Common
+Clear
+Slip
+EncSlip
+SigM
+SigM2
+SigM3
+SigA
 knowledge:
-C : C,M,a,empty,pk,sk,hmac,hash,can(C,a)
-M : C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash
-a : C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,can(C,a)
+C : C,M,a
+M : C,M,a
+a : C,M,a
+C,a share can(C,a)
+C,M agree Price,Desc
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
@@ -30,7 +42,7 @@ actions
 
 ##########################################################################################
 #
-#  A1. C *->* M : Price,Desc
+#  A1. C -> M : HxSALTC,IDC
 #
 ##########################################################################################
 
@@ -60,7 +72,7 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A2. M *->* C : empty
+#  A2. M -> C : Clear,SigM
 #
 ##########################################################################################
 
@@ -90,7 +102,7 @@ pre source$ = M and target$ = C
 
 ##########################################################################################
 #
-#  A3. C -> M : HxSALTC,hmac(can(C,a),HxRC)
+#  A3. C -> M : EncSlip
 #
 ##########################################################################################
 
@@ -120,12 +132,12 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A4. M -> C : ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),hash(NxV),hash(NxVC),{hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC))}inv(sk(M))
+#  A4. M -> a : Clear,hmac(Desc,HxSALTC),EncSlip,SigM3
 #
 ##########################################################################################
 
 action4(void)
-pre source$ = M and target$ = C
+pre source$ = M and target$ = a
 {
   # Number is >= 0, Xbits in configuration
   var response$: action4resp;
@@ -150,12 +162,12 @@ pre source$ = M and target$ = C
 
 ##########################################################################################
 #
-#  A5. C -> M : {Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC}pk(a)
+#  A5. a -> M : Auth,SigA
 #
 ##########################################################################################
 
 action5(void)
-pre source$ = C and target$ = M
+pre source$ = a and target$ = M
 {
   # Number is >= 0, Xbits in configuration
   var response$: action5resp;
@@ -180,12 +192,12 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A6. M -> a : ID,TID,NxNONCE,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),hash(NxV),hash(NxVC),hmac(Desc,HxSALTC),{Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC}pk(a),{a,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),{Price,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)),can(C,a),HxRC}pk(a)}inv(sk(M))
+#  A6. M -> C : Auth,SigA,NxV,NxVC
 #
 ##########################################################################################
 
 action6(void)
-pre source$ = M and target$ = a
+pre source$ = M and target$ = C
 {
   # Number is >= 0, Xbits in configuration
   var response$: action6resp;
@@ -202,67 +214,7 @@ pre source$ = M and target$ = a
   # END
   ##################################################################
 
-  transmit(target$, action7, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A7. a -> M : Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(a))
-#
-##########################################################################################
-
-action7(void)
-pre source$ = a and target$ = M
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action7resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action8, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A8. M -> C : Auth,{C,M,hash(Auth,hash(Price,ID,TID,NxNONCE,hmac(can(C,a),HxRC),hmac(Desc,HxSALTC),hash(NxV),hash(NxVC)))}inv(sk(a)),NxV,NxVC
-#
-##########################################################################################
-
-action8(void)
-pre source$ = M and target$ = C
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action8resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action8, response$);               ## always next action for AnB protocols only
+  transmit(target$, action6, response$);               ## always next action for AnB protocols only
 
   ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
 }

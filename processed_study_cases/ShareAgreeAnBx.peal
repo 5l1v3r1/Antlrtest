@@ -8,13 +8,14 @@ imports
 
 Types Section:
 Agent : A,B
-Number : empty,Desc,Price
-Function : prova
-Function : shk
-Function : hmac,hash,sk,pk
+Number : Desc,Price,empty
+Function : Agent->Number]prova,[Agent
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
-A : A,B,empty,pk,sk,hmac,hash,shk(A,B)
-B : B,A,empty,prova,pk,sk,hmac,hash,shk(A,B)
+A : A,B,empty
+B : B,A,empty,prova
+A,B share shk(A,B)
+A,B agree Price,Desc
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
@@ -28,7 +29,7 @@ actions
 
 ##########################################################################################
 #
-#  A1. A *->* B : Price,Desc
+#  A1. A -> B : {|Price|}shk(A,B)
 #
 ##########################################################################################
 
@@ -58,7 +59,7 @@ pre source$ = A and target$ = B
 
 ##########################################################################################
 #
-#  A2. B *->* A : empty
+#  A2. B -> A : {|Desc|}shk(A,B)
 #
 ##########################################################################################
 
@@ -88,7 +89,7 @@ pre source$ = B and target$ = A
 
 ##########################################################################################
 #
-#  A3. A -> B : {|Price|}shk(A,B)
+#  A3. A -> B : empty
 #
 ##########################################################################################
 
@@ -118,7 +119,7 @@ pre source$ = A and target$ = B
 
 ##########################################################################################
 #
-#  A4. B -> A : {|Desc|}shk(A,B)
+#  A4. B -> A : prova(A,B)
 #
 ##########################################################################################
 
@@ -140,67 +141,7 @@ pre source$ = B and target$ = A
   # END
   ##################################################################
 
-  transmit(target$, action5, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A5. A -> B : empty
-#
-##########################################################################################
-
-action5(void)
-pre source$ = A and target$ = B
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action5resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action6, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A6. B -> A : prova(A,B)
-#
-##########################################################################################
-
-action6(void)
-pre source$ = B and target$ = A
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action6resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action6, response$);               ## always next action for AnB protocols only
+  transmit(target$, action4, response$);               ## always next action for AnB protocols only
 
   ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
 }

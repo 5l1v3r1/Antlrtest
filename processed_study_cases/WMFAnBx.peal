@@ -6,15 +6,25 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
-Agent : B,s,A
-Number : empty,Msg
-Symmetric_key : KxKAB
-Function : shk
+Agent : B,A,s
+Number : Msg,empty
+SymmetricKey : KxKAB
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
-A : A,B,s,empty,shk(A,s)
-B : B,A,s,empty,shk(B,s)
-s : A,B,s,empty,shk(A,s),shk(B,s)
+A : A,B,s,empty
+B : B,A,s,empty
+s : A,B,s,empty
+A,s share shk(A,s)
+B,s share shk(B,s)
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
