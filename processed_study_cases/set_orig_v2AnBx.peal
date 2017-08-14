@@ -7,14 +7,26 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,M,a
-Number : PurchAmt,NxChallC,OrderDesc,NxAuthCode,NxXID,NxLIDM,empty,NxChallM
-Function : pan
-Function : sk,hash,hmac,pk
+Agent : a,M,C
+Certified : a,M
+Number : PurchAmt,NxChallC,NxXID,OrderDesc,NxChallM,NxLIDM,NxAuthCode
+Function : [Agent,Agent->Number]pan
+Definitions:
+TID
+HOD
+PIHead
+OIData
+PANData
+PIData
+PIDualSign
+OIDualSign
+Contract
 knowledge:
-C : C,M,a,empty,pk,sk,hmac,hash,pan(C,a)
-M : C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash
-a : C,M,a,inv(pk(a)),inv(sk(a)),empty,pk,sk,hmac,hash,pan(C,a)
+C : C,M,a
+M : C,M,a
+a : C,M,a
+C,a share pan(C,a)
+C,M agree PurchAmt,OrderDesc
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
@@ -28,7 +40,7 @@ actions
 
 ##########################################################################################
 #
-#  A1. C *->* M : PurchAmt,OrderDesc
+#  A1. C -> M : NxLIDM,NxChallC
 #
 ##########################################################################################
 
@@ -58,7 +70,7 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A2. M *->* C : empty
+#  A2. M -> C : {NxLIDM,NxXID,NxChallC,NxChallM}inv(sk(M))
 #
 ##########################################################################################
 
@@ -88,7 +100,7 @@ pre source$ = M and target$ = C
 
 ##########################################################################################
 #
-#  A3. C -> M : NxLIDM,NxChallC
+#  A3. C -> M : PIDualSign,OIDualSign
 #
 ##########################################################################################
 
@@ -118,12 +130,12 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A4. M -> C : {NxLIDM,NxXID,NxChallC,NxChallM}inv(sk(M))
+#  A4. M -> a : {{NxLIDM,NxXID,hash(OIData),HOD,PIDualSign}inv(sk(M))}pk(a)
 #
 ##########################################################################################
 
 action4(void)
-pre source$ = M and target$ = C
+pre source$ = M and target$ = a
 {
   # Number is >= 0, Xbits in configuration
   var response$: action4resp;
@@ -148,12 +160,12 @@ pre source$ = M and target$ = C
 
 ##########################################################################################
 #
-#  A5. C -> M : hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),{NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),pan(C,a)}pk(a),NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM,hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a))
+#  A5. a -> M : {{M,NxLIDM,NxXID,PurchAmt,NxAuthCode}inv(sk(a))}pk(M)
 #
 ##########################################################################################
 
 action5(void)
-pre source$ = C and target$ = M
+pre source$ = a and target$ = M
 {
   # Number is >= 0, Xbits in configuration
   var response$: action5resp;
@@ -178,12 +190,12 @@ pre source$ = C and target$ = M
 
 ##########################################################################################
 #
-#  A6. M -> a : {{NxLIDM,NxXID,hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),hash(OrderDesc,PurchAmt),hash(NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),{NxLIDM,NxXID,hash(OrderDesc,PurchAmt),PurchAmt,M,hash(NxXID,pan(C,a)),hash(NxLIDM,NxXID,NxChallC,hash(OrderDesc,PurchAmt),NxChallM),pan(C,a)}pk(a)}inv(sk(M))}pk(a)
+#  A6. M -> C : {NxLIDM,NxXID,NxChallC,hash(PurchAmt),NxAuthCode}inv(sk(M))
 #
 ##########################################################################################
 
 action6(void)
-pre source$ = M and target$ = a
+pre source$ = M and target$ = C
 {
   # Number is >= 0, Xbits in configuration
   var response$: action6resp;
@@ -200,67 +212,7 @@ pre source$ = M and target$ = a
   # END
   ##################################################################
 
-  transmit(target$, action7, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A7. a -> M : {{M,NxLIDM,NxXID,PurchAmt,NxAuthCode}inv(sk(a))}pk(M)
-#
-##########################################################################################
-
-action7(void)
-pre source$ = a and target$ = M
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action7resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action8, response$);               ## always next action for AnB protocols only
-
-  ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
-}
-
-
-##########################################################################################
-#
-#  A8. M -> C : {NxLIDM,NxXID,NxChallC,hash(PurchAmt),NxAuthCode}inv(sk(M))
-#
-##########################################################################################
-
-action8(void)
-pre source$ = M and target$ = C
-{
-  # Number is >= 0, Xbits in configuration
-  var response$: action8resp;
-
-  ##################################################################
-  # BEGIN
-  #
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CG=compiler generated?
-  ## see uk.ac.ncl.emv_emulator.EntryPoint.DoTransaction():278
-  ##
-  ## = initialisation code to connect to the CardReaader
-  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #
-  # END
-  ##################################################################
-
-  transmit(target$, action8, response$);               ## always next action for AnB protocols only
+  transmit(target$, action6, response$);               ## always next action for AnB protocols only
 
   ## transmit updates the knowledge of the target$ wrt response$ and target's cyphering capabilities (i.e. kps from AnB)
 }

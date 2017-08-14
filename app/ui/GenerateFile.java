@@ -30,7 +30,7 @@ public class GenerateFile {
 			}
 			// System.out.println(filecontent);
 
-			filepath = anbxHandlerObject.writeFile(anbxHandlerObject.openFile(filepath + ".AnBx"));
+			filecontent = anbxHandlerObject.writeFile(anbxHandlerObject.openFile(filepath + ".AnBx"));
 			if (anbxHandlerObject.saveFile(outpath + "AnBx", filecontent)) {
 				System.out.println("file save: " + filename + "AnBx.peal");
 			} else {

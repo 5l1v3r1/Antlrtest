@@ -8,13 +8,13 @@ imports
 
 Types Section:
 Agent : A,B
-Number : Text1,Text2,empty,NxA,NxB
-Function : f
-Function : shk
-Function : pk,hmac,sk,hash
+Number : NxB,Text1,Text2,NxA
+Function : [SymmetricKey,Number->Number]f,Number,Agent
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
-A : A,B,f,empty,pk,sk,hmac,hash,shk(A,B)
-B : B,A,f,empty,pk,sk,hmac,hash,shk(A,B)
+A : A,B,f
+B : B,A,f
+B,A share shk(A,B)
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get

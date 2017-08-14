@@ -6,9 +6,17 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
 Agent : A,B,s
-Number : Text1,NxNA
+Number : NxNA,Text1
 Function : sk
 knowledge:
 A : A,B,sk(A),inv(sk(A))

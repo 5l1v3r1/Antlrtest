@@ -6,25 +6,48 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
-Agent : T,iss,C
+Agent : C,iss,T
 Number : commandListApps
 Number : respVisa
-Number : respDiscover,respUnionPay,respAmex,respJCB,respMasterCard
-Number : PDOLAmount,PDOLDate,PDOLTVR,PDOLCountry,PDOLTTQ,PDOLCurrency
-Function : fcnSelect
-Function : fcnPDOL
-Function : fcnCVM
-Function : fcnUsage
-Function : fcnUnpred
-Function : fcnSeqNo
-Function : fcnAgree
-Function : sk
-Function : shk
+Number : respUnionPay,respJCB,respMasterCard,respAmex,respDiscover
+Number : PDOLTVR,PDOLCurrency,PDOLDate,PDOLTTQ,PDOLCountry,PDOLAmount
+Function : Number->Number]fcnSelect,[Agent
+Function : Number->Number]fcnPDOL,[Agent
+Function : Number->Number]fcnCVM,[Agent
+Function : Number->Number]fcnUsage,[Agent
+Function : Number->Number]fcnUnpred,[Agent
+Function : Number->SeqNumber]fcnSeqNo,[Agent
+Function : Number->Number]fcnAgree,[Number
+Function : [Agent->PublicKey]sk
+Function : [Agent,Agent->SymmetricKey]shk
+Definitions:
+CardVisaCapabilities
+CardVisaPDOL
+CSN
+CUPN
+TermUsageValid
+TransVisaCapabilities
+TermTransVisaCapabilities
+PDOLUPN
+PDOL
+ACPayload
+AC
+SDADPayload
+SDAD
 knowledge:
-C : C,iss,sk,shk,inv(sk(C)),respVisa,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred,fcnSeqNo,shk(C,iss)
+C : C,iss,sk,shk,inv(sk(C)),respVisa,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred,fcnSeqNo
 T : T,sk,commandListApps,fcnSelect,fcnPDOL,fcnCVM,fcnAgree,fcnUsage,fcnUnpred
-iss : iss,C,shk,sk,shk(C,iss)
+iss : iss,C,shk,sk
+C,iss share shk(C,iss)
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
@@ -128,7 +151,7 @@ pre source$ = T and target$ = C
 
 ##########################################################################################
 #
-#  A4. C -> T : fcnPDOL(C,respVisa),fcnCVM(C,respVisa)
+#  A4. C -> T : CardVisaPDOL,CardVisaCapabilities
 #
 ##########################################################################################
 
@@ -158,7 +181,7 @@ pre source$ = C and target$ = T
 
 ##########################################################################################
 #
-#  A5. T -> C : PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))
+#  A5. T -> C : PDOL,TermTransVisaCapabilities
 #
 ##########################################################################################
 
@@ -188,7 +211,7 @@ pre source$ = T and target$ = C
 
 ##########################################################################################
 #
-#  A6. C -> T : fcnAgree(fcnCVM(C,respVisa),fcnCVM(T,fcnCVM(T,fcnAgree(fcnUsage(C,respVisa),fcnUsage(T,respVisa))))),{PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa),fcnUnpred(C,fcnSeqNo(C,respVisa))}inv(sk(C)),{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss)
+#  A6. C -> T : fcnAgree(CardVisaCapabilities,TermTransVisaCapabilities),SDAD,AC
 #
 ##########################################################################################
 
@@ -218,7 +241,7 @@ pre source$ = C and target$ = T
 
 ##########################################################################################
 #
-#  A7. T -> iss : PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,{|PDOLDate,PDOLAmount,fcnUnpred(T,fcnPDOL(C,respVisa)),PDOLTVR,PDOLCountry,PDOLCurrency,fcnSeqNo(C,respVisa)|}shk(C,iss),C
+#  A7. T -> iss : PDOL,AC,C
 #
 ##########################################################################################
 

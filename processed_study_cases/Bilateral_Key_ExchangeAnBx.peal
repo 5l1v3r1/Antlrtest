@@ -6,11 +6,19 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
 Agent : B,A
-Number : NxNA,NxNB
-Symmetric_key : KxK
-Function : pk,f
+Number : NxNB,NxNA
+SymmetricKey : KxK
+Function : f,pk
 knowledge:
 A : A,B,pk(A),pk(B),inv(pk(A)),f
 B : A,B,pk(A),pk(B),inv(pk(B)),pk,f

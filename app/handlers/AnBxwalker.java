@@ -23,8 +23,6 @@ public class AnBxwalker extends ANBXBaseListener {
 	@Override
 	public void enterAnbx_ProtocolName(ANBXParser.Anbx_ProtocolNameContext ctx) {
 		ST st = groupStringTemplate.getInstanceOf("title");
-		// st.add("title", "Protocol Name Section");
-		// newFile += st.render();
 
 		for (int i = 0; i < ctx.ANBX_Identifier().size(); i++) {
 			st = groupStringTemplate.getInstanceOf("protocolname");
@@ -95,24 +93,6 @@ public class AnBxwalker extends ANBXBaseListener {
 				st = groupStringTemplate.getInstanceOf("knowlegde");
 				st.add("knowledge", new KnowledgeAnB(ctx.anbx_Know(i).getText()));
 				newFile += st.render();
-
-				// if (ctx.anbx_Know(i).ANBX_DELIMITER(0).getText().equals(":"))
-				// {
-				// newFile += ctx.anbx_Know(i).ANBX_Identifier(0).getText();
-				// newFile += " " + ctx.anbx_Know(i).ANBX_DELIMITER(0).getText()
-				// + " ";
-				// newFile += ctx.anbx_Know(i).ANBX_KNOW(0);
-				// newFile += "\n";
-				// } else {
-				// newFile += "where ";
-				// newFile += ctx.anbx_Know(i).ANBX_KNOW_CONDITION(0).getText();
-				// for (int j = 1; j <
-				// ctx.anbx_Know(i).ANBX_KNOW_CONDITION().size(); j++) {
-				// newFile += "," +
-				// ctx.anbx_Know(i).ANBX_KNOW_CONDITION(j).getText();
-				// }
-				// newFile += "\n";
-				// }
 			} else {
 				for (int j = 0; j < ctx.anbx_Know(i).getChildCount(); j++) {
 					if (ctx.anbx_Know(i).getChild(j).getText().equals("agree")
@@ -132,10 +112,7 @@ public class AnBxwalker extends ANBXBaseListener {
 		ST st = groupStringTemplate.getInstanceOf("titleactions");
 		st.add("title", "title");
 		newFile += st.render();
-
-		// System.out.println(ctx.anbx_Action().size());
-		// System.out.println(ctx.anbx_Action(4).ANBX_DELIMITER().size());
-
+		
 		for (int i = 0; i < ctx.anbx_Action().size(); i++) {
 			if (ctx.anbx_Action(i).ANBX_DELIMITER().size() > 1) {
 
@@ -168,11 +145,5 @@ public class AnBxwalker extends ANBXBaseListener {
 			}
 		}
 
-		// for (int i = 0; i < ctx.anbx_Action().size(); i++) {
-		// for (int j = 0; j < ctx.anbx_Action(i).getChildCount(); j++) {
-		// newFile += ctx.anbx_Action(i).getChild(j).getText();
-		// }
-		// newFile += "\n";
-		// }
 	}
 }

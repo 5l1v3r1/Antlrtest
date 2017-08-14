@@ -6,8 +6,16 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
-Agent : B,A
+Agent : A,B
 PublicKey : PKA
 Number : Msg
 knowledge:

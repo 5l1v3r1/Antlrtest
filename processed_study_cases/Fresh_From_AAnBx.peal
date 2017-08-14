@@ -6,10 +6,18 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
-Agent : B,A
+Agent : A,B
 Number : Nonce,Msg
-Function : hmac,pk,hash,sk
+Function : hmac,pk,sk,hash
 knowledge:
 A : A,B,pk,sk,inv(pk(A)),inv(sk(A))
 B : A,B,pk,sk

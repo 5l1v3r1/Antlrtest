@@ -6,11 +6,19 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnB
+
+imports
+  AnBLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
-Agent : B,A,s
-Number : NxNA,NxNB
+Agent : A,s,B
+Number : NxNB,NxNA
 Symmetric_key : KxKS
-Function : pk,sk
+Function : sk,pk
 knowledge:
 A : A,pk(A),inv(pk(A)),s,sk(s),B
 B : A,B,pk(B),inv(pk(B)),s,sk(s),pk(s)
@@ -59,7 +67,7 @@ pre source$ = A and target$ = s
 
 ##########################################################################################
 #
-#  A2. s -> A : {B,pk(B)}inv(sk(s))
+#  A2. s -> A : {B,pk(B)}(inv(sk(s)))
 #
 ##########################################################################################
 
@@ -89,7 +97,7 @@ pre source$ = s and target$ = A
 
 ##########################################################################################
 #
-#  A3. A -> B : {NxNA,A}pk(B)
+#  A3. A -> B : {NxNA,A}(pk(B))
 #
 ##########################################################################################
 
@@ -149,7 +157,7 @@ pre source$ = B and target$ = s
 
 ##########################################################################################
 #
-#  A5. s -> B : {A,pk(A)}inv(sk(s)),{{NxNA,KxKS,B,A}inv(sk(s))}pk(B)
+#  A5. s -> B : {A,pk(A)}(inv(sk(s))),{{NxNA,KxKS,B,A}inv(sk(s))}pk(B)
 #
 ##########################################################################################
 

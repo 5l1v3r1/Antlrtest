@@ -6,14 +6,23 @@ imports
 
 ##----------------------------------------------------------------------------------------
 
+# Predicting problems in higher levels of abstraction before committing to implementing them
+protocol AnBx
+
+imports
+  AnBxLib
+
+##----------------------------------------------------------------------------------------
+
 Types Section:
 Agent : B,A
-Number : NxNB,NxNB2,empty,NxNA
-Function : shk
-Function : pk,hmac,succ,sk,hash
+Number : NxNB2,NxNB,NxNA
+Function : Agent->SymmetricKey]shk,[Agent
+Function : succ
 knowledge:
-A : A,B,succ,empty,pk,sk,hmac,hash,shk(A,B)
-B : B,A,succ,empty,pk,sk,hmac,hash,shk(A,B)
+A : A,B,succ
+B : B,A,succ
+A,B share shk(A,B)
 
 actions
 ## Notion of source$/target$ is a bit fuzzy; known syntactically so easy to get
