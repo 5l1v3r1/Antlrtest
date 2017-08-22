@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B
-Number : empty,Desc,Price
+Agent : B,A
+Number : Desc,Price,empty
 Function : prova
 Function : shk
-Function : hmac,hash,sk,pk
+Function : sk,hash,pk,hmac
 knowledge:
 A : A,B,empty,pk,sk,hmac,hash,shk(A,B)
 B : B,A,empty,prova,pk,sk,hmac,hash,shk(A,B)

@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,A
-Number : Msg,empty,g,XxX,YxY
-Function : pk,hmac,sk,hash
+Agent : A,B
+Number : YxY,XxX,Msg,g,empty
+Function : sk,hmac,pk,hash
 knowledge:
 A : A,B,g,inv(pk(A)),inv(sk(A)),empty,pk,sk,hmac,hash
 B : A,B,g,empty,pk,sk,hmac,hash

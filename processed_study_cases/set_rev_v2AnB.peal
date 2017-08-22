@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : a,M,C
-Number : NxAuthCode,empty,OrderDesc,NxLIDM,NxXID,PurchAmt
+Agent : M,C,a
+Number : empty,NxAuthCode,NxLIDM,PurchAmt,OrderDesc,NxXID
 Function : pan
 SeqNumber : SQNx12,SQNx5,SQNx11
-Function : hash,hmac,sk,pk
+Function : pk,hash,hmac,sk
 Symmetric_key : Hx6MOrderDesc,Hx6apanCa
 knowledge:
 C : C,M,a,empty,pk,sk,hmac,hash,pan(C,a)

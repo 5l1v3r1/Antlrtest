@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : a,M,C
+Agent : a,C,M
 Certified : a,M
-Number : PurchAmt,NxChallC,NxXID,OrderDesc,NxChallM,NxLIDM,NxAuthCode
-Function : [Agent,Agent->Number]pan
+Number : NxLIDM,NxAuthCode,OrderDesc,NxXID,NxChallC,NxChallM,PurchAmt
+Function : Agent->Number]pan,[Agent
 Definitions:
 TID
 HOD

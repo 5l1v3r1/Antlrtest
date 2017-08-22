@@ -15,7 +15,7 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B,s
+Agent : B,s,A
 Number : NxNA,Text1
 Function : sk
 knowledge:

@@ -15,10 +15,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,s,A
-Number : NxNB,NxNA,NxNB2
+Agent : A,s,B
+Number : NxNB2,NxNA,NxNB
 SymmetricKey : KxKAB
-Function : [Agent,Agent->SymmetricKey]shk
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
 A : A,B,s
 B : B,A,s

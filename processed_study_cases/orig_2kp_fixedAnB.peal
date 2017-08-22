@@ -7,8 +7,8 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,M,a
-Number : Desc,ID,NxNONCE,Price,NxVC,NxV,empty
+Agent : a,M,C
+Number : Price,NxV,Desc,NxNONCE,NxVC,empty,ID
 SeqNumber : TID,Auth
 Symmetric_key : HxRC,HxSALTC
 Function : can

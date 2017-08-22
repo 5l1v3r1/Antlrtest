@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : a,M,C
-Certified : M,a,C
-Number : NxXID,PurchAmt,OrderDesc,NxAuthCode,NxLIDM
-Function : Agent->Number]pan,[Agent
+Agent : a,C,M
+Certified : M,C,a
+Number : OrderDesc,NxAuthCode,PurchAmt,NxXID,NxLIDM
+Function : [Agent,Agent->Number]pan
 Definitions:
 TID
 OIdata

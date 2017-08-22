@@ -8,10 +8,10 @@ imports
 
 Types Section:
 Agent : M,C,a
-Number : NxNONCE,Desc,ID,empty,Price
+Number : NxNONCE,Price,ID,empty,Desc
 Symmetric_key : HxRC,HxSALTC
 SeqNumber : TID,Auth
-Function : pk,sk,hmac,hash
+Function : pk,sk,hash,hmac
 Function : can
 knowledge:
 C : C,M,a,empty,pk,sk,hmac,hash,can(C,a)

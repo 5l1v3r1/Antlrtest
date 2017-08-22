@@ -8,7 +8,7 @@ imports
 
 Types Section:
 Agent : B,A
-Number : NxNA,NxNB
+Number : NxNB,NxNA
 Symmetric_key : KxK
 Function : pk,f
 knowledge:

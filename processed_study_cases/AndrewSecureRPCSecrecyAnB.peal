@@ -10,7 +10,7 @@ Types Section:
 Agent : B,A
 Number : NxNB,NxNB2,empty,NxNA
 Function : shk
-Function : pk,hmac,succ,sk,hash
+Function : hmac,succ,pk,sk,hash
 knowledge:
 A : A,B,succ,empty,pk,sk,hmac,hash,shk(A,B)
 B : B,A,succ,empty,pk,sk,hmac,hash,shk(A,B)

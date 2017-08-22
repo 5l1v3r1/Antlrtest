@@ -7,12 +7,12 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,a,M
+Agent : C,M,a
 Certified : a,C,M
-Number : TID,NxV,Price,NxVC,ID,NxNONCE,Auth,NxSALTMe,empty,Desc
-SymmetricKey : HxSALTC,HxRC
-Function : pk,sk,hmac,hash
-Function : Agent->Number]can,[Agent
+Number : Desc,Price,NxSALTMe,ID,NxNONCE,NxV,NxVC,empty,TID,Auth
+SymmetricKey : HxRC,HxSALTC
+Function : pk,hmac,sk,hash
+Function : [Agent,Agent->Number]can
 Definitions:
 IDC
 Common

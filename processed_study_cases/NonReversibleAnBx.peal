@@ -17,8 +17,8 @@ imports
 Types Section:
 Agent : A,B
 Number : NxB,NxA
-SymmetricKey : KxskAB,KxK
-Function : [Agent,Agent->SymmetricKey]shk
+SymmetricKey : KxK,KxskAB
+Function : Agent->SymmetricKey]shk,[Agent
 Function : f
 knowledge:
 A : A,B,f

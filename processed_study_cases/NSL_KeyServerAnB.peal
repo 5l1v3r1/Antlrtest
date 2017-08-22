@@ -9,7 +9,7 @@ imports
 Types Section:
 Agent : s,A,B
 Number : NxNA,NxNB
-Function : sk,pk
+Function : pk,sk
 knowledge:
 A : A,pk(A),inv(pk(A)),s,sk(s),B
 B : B,pk(B),inv(pk(B)),s,sk(s),A

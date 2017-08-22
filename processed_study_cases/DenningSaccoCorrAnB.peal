@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B,s
-Number : NxA,tag,Text3,Text2,Text4,Text1
+Agent : B,A,s
+Number : Text3,Text1,Text4,Text2,tag,NxA
 Symmetric_key : KAB
-Function : sk,pk
+Function : pk,sk
 knowledge:
 A : A,B,s,sk(A),inv(sk(A)),sk(s),tag
 B : B,sk(s),pk(B),inv(pk(B)),tag

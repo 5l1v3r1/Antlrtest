@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B
-Number : Text1,Text2,empty,NxA,NxB
+Agent : B,A
+Number : Text1,NxA,empty,Text2,NxB
 Function : f
 Function : shk
-Function : pk,hmac,sk,hash
+Function : pk,sk,hmac,hash
 knowledge:
 A : A,B,f,empty,pk,sk,hmac,hash,shk(A,B)
 B : B,A,f,empty,pk,sk,hmac,hash,shk(A,B)

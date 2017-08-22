@@ -16,9 +16,9 @@ imports
 
 Types Section:
 Agent : B,A
-Number : NxNB,NxNA
+Number : NxNA,NxNB
 SymmetricKey : KxK
-Function : f,pk
+Function : pk,f
 knowledge:
 A : A,B,pk(A),pk(B),inv(pk(A)),f
 B : A,B,pk(A),pk(B),inv(pk(B)),pk,f

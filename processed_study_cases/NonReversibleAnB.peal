@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B
+Agent : B,A
 Number : NxB,NxA
-Symmetric_key : KxK,KxskAB
+Symmetric_key : KxskAB,KxK
 Function : shk
 Function : f
 knowledge:

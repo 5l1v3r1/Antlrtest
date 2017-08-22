@@ -15,10 +15,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,A
-Number : NxA,Text4,Text5,Text2,Text1,NxB,Text3
+Agent : A,B
+Number : NxA,NxB,Text3,Text4,Text1,Text2,Text5
 Function : f
-Function : [Agent,Agent->SymmetricKey]shk
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
 A : A,B,f
 B : B,A,f

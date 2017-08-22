@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,M,a
-Certified : a,M
-Number : NxLIDM,NxAuthCode,OrderDesc,NxXID,PurchAmt
+Agent : C,a,M
+Certified : M,a
+Number : PurchAmt,NxXID,OrderDesc,NxLIDM,NxAuthCode
 Function : Agent->Number]pan,[Agent
 Definitions:
 TID

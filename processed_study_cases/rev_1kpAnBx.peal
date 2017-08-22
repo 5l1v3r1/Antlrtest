@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : M,C,a
+Agent : C,M,a
 Certified : a
-Number : TID,Desc,Price,Auth
-Function : [Agent,Agent->Number]ccn
+Number : Desc,Price,Auth,TID
+Function : Agent->Number]ccn,[Agent
 Definitions:
 Can
 HCan

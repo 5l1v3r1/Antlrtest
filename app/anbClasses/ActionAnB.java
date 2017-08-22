@@ -14,7 +14,4 @@ public class ActionAnB {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
-
 }

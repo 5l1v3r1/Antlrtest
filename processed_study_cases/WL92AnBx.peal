@@ -15,7 +15,7 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,s,B
+Agent : s,A,B
 Number : NxNB,NxNA
 Symmetric_key : KxKS
 Function : sk,pk
