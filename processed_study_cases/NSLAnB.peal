@@ -8,7 +8,7 @@ imports
 
 Types Section:
 Agent : A,B
-Number : NxNA,NxNB
+Number : NxNB,NxNA
 Function : pk
 knowledge:
 A : A,pk,inv(pk(A)),B

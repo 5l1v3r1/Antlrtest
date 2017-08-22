@@ -15,10 +15,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : s,A,B
-Number : Text2,Text1,Text4,Text3,NxA,tag
+Agent : B,s,A
+Number : Text2,Text3,Text4,NxA,tag,Text1
 SymmetricKey : KAB
-Function : pk,sk
+Function : sk,pk
 knowledge:
 A : A,B,s,sk(A),inv(sk(A)),sk(s),tag
 B : B,sk(s),pk(B),inv(pk(B)),tag

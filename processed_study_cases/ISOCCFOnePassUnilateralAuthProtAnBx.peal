@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B
-Number : NxB,Text1,Text2,NxA
-Function : [SymmetricKey,Number->Number]f,Number,Agent
-Function : Agent->SymmetricKey]shk,[Agent
+Agent : B,A
+Number : NxA,Text1,NxB,Text2
+Function : Number,[SymmetricKey,Number->Number]f,Agent
+Function : [Agent,Agent->SymmetricKey]shk
 knowledge:
 A : A,B,f
 B : B,A,f

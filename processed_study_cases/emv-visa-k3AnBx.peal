@@ -15,18 +15,18 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,iss,T
+Agent : T,C,iss
 Number : commandListApps
 Number : respVisa
-Number : respUnionPay,respJCB,respMasterCard,respAmex,respDiscover
-Number : PDOLTVR,PDOLCurrency,PDOLDate,PDOLTTQ,PDOLCountry,PDOLAmount
-Function : Number->Number]fcnSelect,[Agent
-Function : Number->Number]fcnPDOL,[Agent
-Function : Number->Number]fcnCVM,[Agent
-Function : Number->Number]fcnUsage,[Agent
-Function : Number->Number]fcnUnpred,[Agent
-Function : Number->SeqNumber]fcnSeqNo,[Agent
-Function : Number->Number]fcnAgree,[Number
+Number : respMasterCard,respUnionPay,respJCB,respAmex,respDiscover
+Number : PDOLAmount,PDOLTTQ,PDOLCountry,PDOLCurrency,PDOLTVR,PDOLDate
+Function : [Agent,Number->Number]fcnSelect
+Function : [Agent,Number->Number]fcnPDOL
+Function : [Agent,Number->Number]fcnCVM
+Function : [Agent,Number->Number]fcnUsage
+Function : [Agent,Number->Number]fcnUnpred
+Function : [Agent,Number->SeqNumber]fcnSeqNo
+Function : [Number,Number->Number]fcnAgree
 Function : [Agent->PublicKey]sk
 Function : [Agent,Agent->SymmetricKey]shk
 Definitions:

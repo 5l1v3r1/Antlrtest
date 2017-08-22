@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,a,M
+Agent : a,M,C
 Certified : M,a
-Number : Price,TID,Desc,Auth
+Number : Auth,Price,Desc,TID
 Function : [Agent,Agent->Number]ccn
 Definitions:
 Can

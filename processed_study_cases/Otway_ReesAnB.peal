@@ -7,7 +7,7 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,s,B
+Agent : s,A,B
 Number : NxM,NxA,NxB
 Symmetric_key : KxKAB
 Function : shk

@@ -16,8 +16,8 @@ imports
 
 Types Section:
 Agent : B,A
-Number : XxX,g,Msg,YxY
-Function : hmac,pk
+Number : Msg,XxX,g,YxY
+Function : pk,hmac
 knowledge:
 A : A,B,pk,inv(pk(A)),g,hmac
 B : A,B,pk,g,inv(pk(B)),hmac

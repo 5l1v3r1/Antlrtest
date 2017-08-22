@@ -17,7 +17,7 @@ imports
 Types Section:
 Agent : A,B
 Number : Nonce,Msg
-Function : hmac,pk,sk,hash
+Function : pk,hmac,hash,sk
 knowledge:
 A : A,B,pk,sk,inv(pk(A)),inv(sk(A))
 B : A,B,pk,sk

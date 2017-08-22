@@ -15,8 +15,8 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,A
-Number : NxNB,NxNA
+Agent : A,B
+Number : NxNA,NxNB
 Function : pk
 knowledge:
 A : A,pk,inv(pk(A)),B

@@ -7,8 +7,8 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B,s
-Number : Text1,NxNA,Text2,empty,Text4,NxNB,Text3,tag
+Agent : s,A,B
+Number : tag,Text3,Text1,empty,NxNA,Text4,Text2,NxNB
 Function : sk
 knowledge:
 A : A,B,s,sk(A),inv(sk(A)),sk(s),tag,empty

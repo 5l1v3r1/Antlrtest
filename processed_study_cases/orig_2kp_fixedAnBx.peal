@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : M,C,a
-Certified : M,a
-Number : Desc,NxVC,ID,Price,NxV,NxNONCE
+Agent : a,M,C
+Certified : a,M
+Number : ID,NxV,NxVC,Desc,Price,NxNONCE
 SeqNumber : TID,Auth
-Symmetric_key : HxSALTC,HxRC
+Symmetric_key : HxRC,HxSALTC
 Function : [Agent,Agent->Number]can
 Definitions:
 IDC

@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : M,C,B
-Certified : C,B,M
-Number : four,NxC,six,Goods,Price,one,two,three,NxM,NxB,five
+Agent : C,B,M
+Certified : B,C,M
+Number : NxM,five,one,NxB,two,NxC,three,four,six,Goods,Price
 Function : id
 knowledge:
 B : B,C,M,one,two,three,four,five,six

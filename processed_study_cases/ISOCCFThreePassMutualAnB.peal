@@ -8,7 +8,7 @@ imports
 
 Types Section:
 Agent : A,B
-Number : NxA,Text4,Text5,NxB,Text3,Text1,Text2
+Number : NxB,Text5,Text2,Text1,NxA,Text3,Text4
 Function : f
 Function : shk
 knowledge:

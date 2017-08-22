@@ -9,7 +9,7 @@ imports
 Types Section:
 Agent : A,B
 Certified : A,B
-Number : Msg,YxY,XxX,g
+Number : XxX,g,Msg,YxY
 knowledge:
 A : A,B,g
 B : A,B,g

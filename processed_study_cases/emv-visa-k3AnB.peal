@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : T,iss,C
+Agent : C,T,iss
 Number : commandListApps
 Number : respVisa
-Number : respDiscover,respUnionPay,respAmex,respJCB,respMasterCard
-Number : PDOLAmount,PDOLDate,PDOLTVR,PDOLCountry,PDOLTTQ,PDOLCurrency
+Number : respUnionPay,respDiscover,respAmex,respMasterCard,respJCB
+Number : PDOLTVR,PDOLCurrency,PDOLTTQ,PDOLCountry,PDOLAmount,PDOLDate
 Function : fcnSelect
 Function : fcnPDOL
 Function : fcnCVM

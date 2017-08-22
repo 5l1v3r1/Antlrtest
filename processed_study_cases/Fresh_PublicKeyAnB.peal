@@ -7,7 +7,7 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,A
+Agent : A,B
 PublicKey : PKA
 Number : Msg
 knowledge:

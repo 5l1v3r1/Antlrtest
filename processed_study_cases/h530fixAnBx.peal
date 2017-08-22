@@ -15,9 +15,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,s,B
-Number : empty,t1,YxY,t4,t3,t2,XxX,t5,g,M
-Function : hash,sk
+Agent : B,s,A
+Number : t2,M,empty,t4,XxX,t3,YxY,g,t5,t1
+Function : sk,hash
 Function : [Agent,Agent->Symmetric_key]shk
 knowledge:
 A : A,s,B,g,hash,t1,t2,t3,t4,t5,empty

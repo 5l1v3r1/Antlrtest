@@ -16,9 +16,9 @@ imports
 
 Types Section:
 Agent : A,B
-Number : tag,Text4,NxB,Text2,Text5,Text3,Text1,NxA
+Number : Text3,Text4,Text1,Text5,tag,Text2,NxA,NxB
 Function : f
-Function : [Agent,Agent->SymmetricKey]shk
+Function : Agent->SymmetricKey]shk,[Agent
 knowledge:
 A : A,B,f,tag
 B : B,A,f

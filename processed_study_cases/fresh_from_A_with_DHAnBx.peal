@@ -16,8 +16,8 @@ imports
 
 Types Section:
 Agent : B,A
-Number : NxB,g,YxY,XxX,Msg
-Function : sk,hash,pk
+Number : NxB,YxY,XxX,g,Msg
+Function : hash,sk,pk
 knowledge:
 A : A,B,pk,sk,inv(sk(A)),inv(pk(A)),hash,g
 B : A,B,pk,sk,hash,g

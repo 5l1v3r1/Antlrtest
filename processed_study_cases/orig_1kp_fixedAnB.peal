@@ -7,11 +7,11 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : a,M,C
-Number : Price,NxNONCE,Desc,empty,ID
-Symmetric_key : HxRC,HxSALTC
+Agent : M,a,C
+Number : ID,NxNONCE,empty,Price,Desc
+Symmetric_key : HxSALTC,HxRC
 SeqNumber : Auth,TID
-Function : sk,pk,hash,hmac
+Function : hash,pk,sk,hmac
 Function : can
 knowledge:
 C : C,M,a,empty,pk,sk,hmac,hash,can(C,a)

@@ -7,10 +7,10 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,M,a
-Number : PurchAmt,NxChallC,OrderDesc,NxAuthCode,NxXID,NxLIDM,empty,NxChallM
+Agent : a,C,M
+Number : empty,PurchAmt,NxChallC,NxXID,OrderDesc,NxChallM,NxLIDM,NxAuthCode
 Function : pan
-Function : sk,hash,hmac,pk
+Function : sk,hash,pk,hmac
 knowledge:
 C : C,M,a,empty,pk,sk,hmac,hash,pan(C,a)
 M : C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash

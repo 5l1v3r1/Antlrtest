@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : B,A
+Agent : A,B
 Certified : A
-Number : XxX,Msg,YxY,g
+Number : XxX,g,YxY,Msg
 knowledge:
 A : A,B,g
 B : A,B,g

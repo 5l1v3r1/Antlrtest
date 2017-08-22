@@ -7,12 +7,12 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : a,C,M
-Number : empty,ID,NxVC,NxV,Price,Desc,NxNONCE
+Agent : C,M,a
+Number : NxV,ID,Desc,NxNONCE,NxVC,Price,empty
 SeqNumber : TID,Auth
-Symmetric_key : HxRC,HxSALTC
+Symmetric_key : HxSALTC,HxRC
 Function : can
-Function : hmac,pk,hash,sk
+Function : sk,pk,hash,hmac
 knowledge:
 C : C,M,a,empty,pk,sk,hmac,hash,can(C,a)
 M : C,M,a,inv(pk(M)),inv(sk(M)),empty,pk,sk,hmac,hash

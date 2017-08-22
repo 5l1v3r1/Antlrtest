@@ -15,7 +15,7 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : A,B
+Agent : B,A
 Number : Msg
 Function : sk
 knowledge:

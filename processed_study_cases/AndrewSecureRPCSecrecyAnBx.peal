@@ -17,7 +17,7 @@ imports
 Types Section:
 Agent : B,A
 Number : NxNB2,NxNB,NxNA
-Function : Agent->SymmetricKey]shk,[Agent
+Function : [Agent,Agent->SymmetricKey]shk
 Function : succ
 knowledge:
 A : A,B,succ

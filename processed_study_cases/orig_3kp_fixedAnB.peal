@@ -8,9 +8,9 @@ imports
 
 Types Section:
 Agent : a,C,M
-Number : TID,NxNONCE,Auth,NxV,Desc,empty,NxSALTMe,Price,ID,NxVC
-Symmetric_key : HxRC,HxSALTC
-Function : sk,pk,hash,hmac
+Number : NxSALTMe,Desc,NxNONCE,NxVC,ID,NxV,TID,empty,Auth,Price
+Symmetric_key : HxSALTC,HxRC
+Function : hmac,hash,pk,sk
 Function : can
 knowledge:
 C : C,M,a,inv(pk(C)),inv(sk(C)),empty,pk,sk,hmac,hash,can(C,a)

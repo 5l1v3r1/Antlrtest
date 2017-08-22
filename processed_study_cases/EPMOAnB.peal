@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : C,B,M
-Number : six,NxB,Price,one,four,NxC,two,three,Goods,empty,five,NxM
-Function : pk,id,hash,sk,hmac
+Agent : M,C,B
+Number : NxM,Goods,one,NxC,four,five,six,NxB,empty,two,three,Price
+Function : pk,hmac,hash,id,sk
 knowledge:
 B : B,C,M,one,two,three,four,five,six,inv(pk(B)),inv(sk(B)),empty,pk,sk,hmac,hash
 C : B,C,M,one,two,three,four,five,six,inv(pk(C)),inv(sk(C)),empty,pk,sk,hmac,hash

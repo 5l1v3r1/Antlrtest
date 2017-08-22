@@ -7,12 +7,12 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : M,C,a
+Agent : a,M,C
 Certified : a
-Number : ID,Desc,NxNONCE,Price,empty
-SymmetricKey : HxSALTC,HxRC
+Number : Price,NxNONCE,Desc,empty,ID
+SymmetricKey : HxRC,HxSALTC
 SeqNumber : Auth,TID
-Function : pk,sk,hash,hmac
+Function : sk,pk,hash,hmac
 Function : [Agent,Agent->Number]can
 Definitions:
 IDC

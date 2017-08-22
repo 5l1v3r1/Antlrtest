@@ -8,8 +8,8 @@ imports
 
 Types Section:
 Agent : A,B
-Number : YxY,g,XxX,Msg,empty
-Function : pk,sk,hmac,hash
+Number : XxX,empty,YxY,Msg,g
+Function : sk,pk,hash,hmac
 knowledge:
 A : A,B,g,inv(pk(A)),inv(sk(A)),empty,pk,sk,hmac,hash
 B : A,B,g,inv(pk(B)),inv(sk(B)),empty,pk,sk,hmac,hash

@@ -7,9 +7,9 @@ imports
 ##----------------------------------------------------------------------------------------
 
 Types Section:
-Agent : s,B,A
-Number : XxX,g,M,t3,t4,empty,t5,t1,YxY,t2
-Function : hash,sk
+Agent : A,s,B
+Number : t4,g,empty,t2,t1,M,t5,t3,XxX,YxY
+Function : sk,hash
 Function : shk
 knowledge:
 A : A,s,B,g,hash,t1,t2,t3,t4,t5,empty,shk(A,s)
