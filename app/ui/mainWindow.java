@@ -45,9 +45,10 @@ public class mainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public mainWindow() {
+		setTitle("Generate peal file from AnB or AnBx File");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 516, 310);
+		setBounds(100, 100, 511, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,12 +77,12 @@ public class mainWindow extends JFrame {
 		btnSaveFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileOpenChooser = new JFileChooser();
-				FileFilter filterAnBFiles = new FileNameExtensionFilter("vlsm files", "vlsm");
+				FileFilter filterAnBFiles = new FileNameExtensionFilter("peal files", "peal");
 				fileOpenChooser.setFileFilter(filterAnBFiles);
 				fileOpenChooser.setAcceptAllFileFilterUsed(false);
 
 				if (fileOpenChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-					savePath.setText(fileOpenChooser.getSelectedFile().toString() + ".vlsm");
+					savePath.setText(fileOpenChooser.getSelectedFile().toString() + ".peal");
 				} else {
 					if (savePath.getText() == null || savePath.getText() == "")
 						savePath.setText("");
@@ -91,35 +92,7 @@ public class mainWindow extends JFrame {
 		btnSaveFile.setBounds(358, 76, 103, 23);
 		contentPane.add(btnSaveFile);
 
-		JButton btnAnalize = new JButton("Analize Input File");
-		btnAnalize.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!openPath.getText().equals(null) && !openPath.getText().equals("")) {
-					String fileExtencion = openPath.getText().substring(openPath.getText().lastIndexOf('.') + 1);
-
-					System.out.println("Analizing the file");
-					try {
-						if (fileExtencion.equalsIgnoreCase("anb")) {
-							AnBxHandler anbHandlerObject = new AnBxHandler();
-							String file = anbHandlerObject.openFile(openPath.getText().toString());
-							anbHandlerObject.analizeFile(file);
-						} else {
-							AnBxHandler anbxHandlerObject = new AnBxHandler();
-							String file = anbxHandlerObject.openFile(openPath.getText().toString());
-							anbxHandlerObject.analizeFile(file);
-						}
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-				}
-			}
-		});
-		btnAnalize.setBounds(102, 158, 131, 23);
-		contentPane.add(btnAnalize);
-
-		JButton btnCreateFile = new JButton("Create Vlsm");
+		JButton btnCreateFile = new JButton("Generate peal file");
 		btnCreateFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!openPath.getText().equals(null) && !openPath.getText().equals("")) {
@@ -164,7 +137,7 @@ public class mainWindow extends JFrame {
 				}
 			}
 		});
-		btnCreateFile.setBounds(309, 158, 89, 23);
+		btnCreateFile.setBounds(198, 127, 150, 23);
 		contentPane.add(btnCreateFile);
 
 		openPath = new JTextField();

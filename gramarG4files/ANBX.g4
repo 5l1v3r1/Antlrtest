@@ -9,13 +9,17 @@ ANBX_Identifier :
 		('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
 		;
 		
-ANBX_COMMENT: 
-		'#' ~[\r\n]* -> channel(HIDDEN)
-   		;
-   		
-WS:  
-		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
-    	;
+ANBX_CHANNEL:
+		'->'
+		|'*->*'
+		|'*->'
+		|'->*'
+		;
+		
+ANBX_OPERATION:
+		'^'
+		|'@'
+		;
     	
 ANBX_DELIMITER:
 		';'
@@ -27,6 +31,15 @@ ANBX_KNOW_RESERVEDWORDS:
 		'share'
 		|'agree'	
 		;
+		
+ANBX_COMMENT: 
+		'#' ~[\r\n]* -> channel(HIDDEN)
+   		;
+   		
+WS:  
+		(' '|'\t'|'\r'? '\n')+ -> channel(HIDDEN)
+    	;
+
 
 ANBX_KNOW:
 		 ANBX_Identifier
@@ -43,21 +56,11 @@ ANBX_KNOW_CONDITION:
 		ANBX_Identifier '!' '=' ANBX_Identifier
 		;
 		
-ANBX_CHANNEL:
-		'->'
-		|'*->*'
-		|'*->'
-		|'->*'
-		;
 		
-ANBX_OPERATION:
-		'^'
-		|'@'
-		;		
 
 anbx_Protocol:
-		anbx_ProtocolName anbx_Types anbx_Definitions* anbx_Knowlegde anbx_Actions anbx_Goals EOF
-		;
+anbx_ProtocolName anbx_Types anbx_Definitions* anbx_Knowlegde anbx_Actions anbx_Goals EOF
+;
 		
 anbx_ProtocolName: 
 		'Protocol' ANBX_DELIMITER ANBX_Identifier+
